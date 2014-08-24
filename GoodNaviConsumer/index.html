@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, user-scalable=no" />
+<title>Wearable Extra UI - Section changer</title>
+<link rel='stylesheet' href='./css/style_main.css'>
+<link rel="stylesheet" href="css/sectionchanger.css">
+<!-- <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"></script>  -->
+<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+<script src="js/communication.js"></script>
+<script src="js/bookMark.js"></script>
+<script src="js/distance.js"></script>
+<script src="js/math.js"></script>
+<script>
+		$(document).ready(function() {
+			$(".meter > span").each(function() {
+				$(this)
+					.data("origWidth", $(this).width())
+					.width(0)
+					.animate({
+						width: $(this).data("origWidth")
+					}, 1200);
+			});
+			
+			// add eventListener for tizenhwkey
+			document.addEventListener('tizenhwkey', function(e) {
+				if (e.keyName == "back")
+					tizen.application.getCurrentApplication().exit();
+			});
+			loadAddress(); // 북마크 불러오기 
+			connect(); // 휴대폰과 연결
+			
+			/*
+			$( "#distanceDiv" ).bind( "click", function() {
+				console.log("switchDistanceDisplayUnit_out");
+				switchDistanceDisplayUnit();
+			);
+			*/
+			
+			document.addEventListener("visibilitychange", pageVisibilityHandler, false);
+			function pageVisibilityHandler() {
+				if (!(document.hidden)) {
+					fetch("BSTART");
+					console.log("page visible");
+				} 
+				else {
+					fetch("BEND");
+					console.log("page hidden");
+				}
+			}
+   
+			function onScreenStateChanged(previousState, changedState) {
+   				console.log("Screen state changed from" + previousState + "to" + changedState);
+   				if (changedState == "SCREEN_OFF") {
+   					fetch("BEND");	
+   				}
+   				else if (changedState == "SCREEN_NORMAL") {
+   					fetch("BSTART");
+   				}
+			}
+			tizen.power.setScreenStateChangeListener(onScreenStateChanged); 
+		
+		
+		});
+	</script>
+</head>
+<body>
+	<div id="hsectionchangerPage" class="ui-page">
+		<div id="hsectionchanger" class="ui-content">
+			<!-- section changer has only one child. -->
+			<div>
+				<section class="section-active">
+					<div class="name">How far?</div>
+					<div class="yuu">
+						<div id="distanceDiv" class="section_distance" onclick="switchDistanceDisplayUnit()">
+							<p class="categories">distance</p>
+							<p id="distanceDisplay" class="distance">999m</p>
+						</div>
+						<div id="resultBoard"></div>
+						<div class="section_progessBar">
+							<p class="categories">rate</p>
+							<p id="distancePercent" class="percentage">11%</p>
+							<div id="page-wrap">
+								<div class="meter mint">
+									<span id="distBar" class="rate" style="width: 33%"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+				<section style="text-align: center">
+					<div class="name">Bookmark</div>
+					<div class="bookmark">
+						<ul id="bookmarklist" class="ui-listview"></ul>
+					</div>
+				</section>
+			</div>
+		</div>
+		<script src="./hsection.js"></script>
+	</div>
+	<script src="./lib/tau/js/tau.js"></script>
+</body>
+</html>
