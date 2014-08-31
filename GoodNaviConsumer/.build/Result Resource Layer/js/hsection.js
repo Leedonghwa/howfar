@@ -1,19 +1,14 @@
 (function() {
-
-var page = document.getElementById( "hsectionchangerPage" ),
-	changer = document.getElementById( "hsectionchanger" ),
-	sectionChanger, idx=1;
-
-page.addEventListener( "pageshow", function() {
-	// make SectionChanger object
-	sectionChanger = new tau.SectionChanger(changer, {
-		circular: false,
-		orientation: "horizontal"
-	});
-});
-
-page.addEventListener( "pagehide", function() {
-	// release object
-	sectionChanger.destroy();
-});
-})();
+    var d = document.getElementById("hsectionchangerPage"),
+        c = document.getElementById("hsectionchanger"),
+        b, a = 1;
+    d.addEventListener("pageshow", function() {
+        b = new tau.SectionChanger(c, {
+            circular: false,
+            orientation: "horizontal"
+        });
+    });
+    d.addEventListener("pagehide", function() {
+        b.destroy();
+    });
+}());

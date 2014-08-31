@@ -4,7 +4,7 @@
 <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
 <Reference URI="config.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>+oR+BoAawKP4/5moLA2IkIciGNfy1IPiqzI7R7xKgZ4=</DigestValue>
+<DigestValue>kFDcBcWwQigOeF3c6SawrAhmy8FArxWokECVZ5YDhXw=</DigestValue>
 </Reference>
 <Reference URI="css/sectionchanger.css">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -16,7 +16,7 @@
 </Reference>
 <Reference URI="hsection.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>D2HKh3a8NM+lyj3reG9Fd26Bct2qzLzGy+z2bnxAsBM=</DigestValue>
+<DigestValue>6XRVZFjVr/nvTQ/NrmnM4cK9XM0SB4dmgotHejssIHE=</DigestValue>
 </Reference>
 <Reference URI="icon.png">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -24,7 +24,11 @@
 </Reference>
 <Reference URI="index.html">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>1YIOK2TrkVWVvHpLOFaul7dloXeXI2jIizWq9edSBKA=</DigestValue>
+<DigestValue>XAv+FXMgydgSAfS8w1HCzj0hAytT5c4U7UEju+Q4jnM=</DigestValue>
+</Reference>
+<Reference URI="jds_test.txt">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>5UbUEINunVXuiRCQpe0Pnp5OboUVTXsGptiReCY7QqE=</DigestValue>
 </Reference>
 <Reference URI="js/app.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -36,23 +40,27 @@
 </Reference>
 <Reference URI="js/bookMark.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>XaXuBCGGqvO2txDw+J327yKYOXR34f6l+XawwmDbzcc=</DigestValue>
+<DigestValue>MFRPGe+r75RlrRQ2ZykGHPuhAXoMpYwUB8/WIRkchPw=</DigestValue>
 </Reference>
 <Reference URI="js/communication.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>F65QHIQpg960fCafAKksxgj6yAELt5w8r9ZBxRs99EU=</DigestValue>
+<DigestValue>XQJuM1Y95jyelFIJs69gJk1yb4LUwp8DDvdqkN/aIFg=</DigestValue>
 </Reference>
 <Reference URI="js/distance.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>qe2Uf8+Bbv6klEv3Giidsls2V6cwCkxh9eqf9LIGDQ0=</DigestValue>
+<DigestValue>3q/09MvicFWzYLs77rYIjc23j2kn4iStozN4Zkq/XMc=</DigestValue>
 </Reference>
 <Reference URI="js/hsection.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>D2HKh3a8NM+lyj3reG9Fd26Bct2qzLzGy+z2bnxAsBM=</DigestValue>
+<DigestValue>tu9Drm0AGWhEkzkh9hJsOe+0Vuyn6LCRfJbUPNqidb4=</DigestValue>
+</Reference>
+<Reference URI="js/initialization.js">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>zhUTkncnCZl3AU2FQcdqcoaQlg6BYmGh5nQIRq206ik=</DigestValue>
 </Reference>
 <Reference URI="js/jquery-2.1.1.min.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>h0cGsrExGgcZtSZ/fRz4AwV+Nn6Urh/3v3jFRQ0w9dQ=</DigestValue>
+<DigestValue>QJoJUxxq1VTyOsdl367HiC1wAdoaXYirT+tmuQccYwY=</DigestValue>
 </Reference>
 <Reference URI="js/main.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -60,7 +68,7 @@
 </Reference>
 <Reference URI="js/math.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>UBEHGB1FucF+dNmDv+kNwxuVJMTQsBNRoxKFFroZOQM=</DigestValue>
+<DigestValue>epfesA2PE+KsqhGjCDBKw5vyE1eDcKlK+uX7cza3TDc=</DigestValue>
 </Reference>
 <Reference URI="lib/tau/LICENSE.Flora">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -315,11 +323,11 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-XmMrs/DvltjVuRIkT3JIqquw3CzJMsv7yN+182TF8PhqWkjaj+CsN9FRtJ+zm21A/+oGRqTV2ofS
-z4lDBa7+LerDsqlwjOU8lgda7eZVerUdHG6djnO+Hu+RDYc96pCoo51BiyWtlYMRQd8D/Plfpljx
-EpCEHcPjnwEwFZWtt3x0Dml7Zi3gnfVnb7zv3QbQeuR3H/TydLvtL08W+VlvKQmh77Kx4zDlPTc/
-NikSRbS77A2WIwefuaMzoylg7lkcf9X/VIpYIOxjOzKWb8TQ8gzASmh8Ia3QRpfZYlsKTm8mH9jV
-NC9D452nGOTM3zf5oEyomXmW7bPndVMONACQFQ==
+zIJq/wqreC0VaM0Eg9KWpqlhMghsc3Vwtk4/GkprkeKP4zqI8VIdXm4YOMB+CbGR+TB9s+ebtZ9m
+VIeGTPy3PCt+YKkTNfnitQjVrtNJ+sdTuj2EuYNsJrNzWJFWdYV1Qs1ANhHLKXiUBdLDz4FBW4+3
+BaRR1fq8JVo2HbWtXBwy2ClIkQY11NHkgi1ISPCRlXfGpmCXaamiYefyHVVDle81CvMdbvytfnQx
+/ULx8zjHgC9sycTS6iR10BvvlhyFkw6GbDT4zg41mARYWHjpOjxoLwQsNP4E+pMFPwSy4f+klNyq
+CBlM77UC6DhbEHNwQwlgSl1I822Bwd8h5RO1eQ==
 </SignatureValue>
 <KeyInfo>
 <X509Data>
