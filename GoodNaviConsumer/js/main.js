@@ -1,6 +1,4 @@
-var tizen, jQuery, bookmarkModule, communicationModule;
-
-(function(tizen, $, bookmarkModule, communicationModule){
+define(["jquery", "bookmark", "communication"], function($, bookmark, communication) {
 	$(document).ready(function() {
 		// bar animation
 		$(".meter > span").each(function() {
@@ -17,8 +15,8 @@ var tizen, jQuery, bookmarkModule, communicationModule;
 			if (e.keyName == "back")
 				tizen.application.getCurrentApplication().exit();
 		});
-		bookmarkModule.loadAddress();	// 북마크 불러오기 
-		communicationModule.connect();	// 휴대폰과 연결
+		bookmark.loadAddress();		// 북마크 불러오기 
+		communication.connect();	// 휴대폰과 연결
 		
 		/*
 		$( "#distanceDiv" ).bind( "click", function() {
@@ -30,11 +28,11 @@ var tizen, jQuery, bookmarkModule, communicationModule;
 		document.addEventListener("visibilitychange", pageVisibilityHandler, false);
 		function pageVisibilityHandler() {
 			if (!(document.hidden)) {
-				communicationModule.fetch("BSTART");
+				communication.fetch("BSTART");
 				console.log("page visible");
 			} 
 			else {
-				communicationModule.fetch("BEND");
+				communication.fetch("BEND");
 				console.log("page hidden");
 			}
 		}
@@ -42,12 +40,12 @@ var tizen, jQuery, bookmarkModule, communicationModule;
 		function onScreenStateChanged(previousState, changedState) {
 	 				console.log("Screen state changed from" + previousState + "to" + changedState);
 	 				if (changedState == "SCREEN_OFF") {
-	 					communicationModule.fetch("BEND");	
+	 					communication.fetch("BEND");	
 	 				}
 	 				else if (changedState == "SCREEN_NORMAL") {
-	 					communicationModule.fetch("BSTART");
+	 					communication.fetch("BSTART");
 	 				}
 		}
 		tizen.power.setScreenStateChangeListener(onScreenStateChanged); 
 	});
-}(tizen, jQuery, bookmarkModule, communicationModule))
+});

@@ -1,16 +1,9 @@
-var tizen, distanceModule, bookmarkModule;
-
-var communicationModule = (function(tizen, distanceModule, bookmarkModule) {
-    var my = {};
-
+define(["distance", "bookmark"], function(distance, bookmark) {
     var _SAAgent = null;
     var _SASocket = null;
     var CHANNELID = 179;
     var PROVIDERAPPNAME = "GoodNaviProvider";
-
-    /**
-     * Analyze a packet 
-     */
+    
     function processPacket(packet) {
         var workType = packet.charAt(0);
         var packetLength = packet.length;
@@ -23,14 +16,15 @@ var communicationModule = (function(tizen, distanceModule, bookmarkModule) {
             var initDistance = parseInt(distanceInfo.initDistance);
             var normalDistance = parseInt(distanceInfo.normalDistance);
 
-            distanceModule._normalDistance = normalDistance;
-            distanceModule._initDistance = initDistance;
-            distanceModule.displayTextDistance();
-            distanceModule.displayBarDistance();
+            distance.setInitDistance(initDistance);
+            distance.setNormalDistance(normalDistance);
+            distance.displayTextDistance();
+            distance.displayBarDistance();
         }
         // 북마크 추가
         else if (workType == 'C') {
-        	bookmarkModule.addBookmark(packetContent);
+            console.log("communicationModule : " + packetContent);
+            bookmark.addBookmark(packetContent);
         }
         // host app 종료시 wearable app 종료
         else if (workType == 'D') {
@@ -39,7 +33,22 @@ var communicationModule = (function(tizen, distanceModule, bookmarkModule) {
             }
         }
     }
+    
+    function onsuccess(agents) {
+        try {
+            if (agents.length > 0) {
+                _SAAgent = agents[0];
 
+                _SAAgent.setPeerAgentFindListener(peerAgentFindCallback);
+                _SAAgent.findPeerAgents(); // re-establish an Samsung Accessory Protocol(SAP) connection
+            } else {
+                alert("Not found SAAgent!!");
+            }
+        } catch (err) {
+            console.log("exception [" + err.name + "] msg[" + err.message + "]");
+        }
+    }
+    
     function onerror(err) {
         console.log("err [" + err.name + "] msg[" + err.message + "]");
     }
@@ -47,7 +56,7 @@ var communicationModule = (function(tizen, distanceModule, bookmarkModule) {
     function onreceive(channelId, data) {
         processPacket(data);
     }
-
+    
     var agentCallback = {
         onconnect: function(socket) {
             _SASocket = socket;
@@ -76,61 +85,45 @@ var communicationModule = (function(tizen, distanceModule, bookmarkModule) {
         onerror: onerror
     };
 
-    function onsuccess(agents) {
-        try {
-            if (agents.length > 0) {
-                _SAAgent = agents[0];
-
-                _SAAgent.setPeerAgentFindListener(peerAgentFindCallback);
-                _SAAgent.findPeerAgents(); // re-establish an Samsung Accessory Protocol(SAP) connection
-            } else {
-                alert("Not found SAAgent!!");
+    return {
+    	connect: function() {
+    		if (_SASocket) {
+                alert('Already connected!');
+                return false;
             }
-        } catch (err) {
-            console.log("exception [" + err.name + "] msg[" + err.message + "]");
-        }
-    }
-
-    my.connect = function() {
-        if (_SASocket) {
-            alert('Already connected!');
-            return false;
-        }
-        try {
-            webapis.sa.requestSAAgent(onsuccess, onerror);
-        } catch (err) {
-            console.log("exception [" + err.name + "] msg[" + err.message + "]");
-        }
-    }
-
-    my.disconnect = function() {
-        try {
-            if (_SASocket != null) {
-                _SASocket.close();
-                _SASocket = null;
+            try {
+                webapis.sa.requestSAAgent(onsuccess, onerror);
+            } catch (err) {
+                console.log("exception [" + err.name + "] msg[" + err.message + "]");
             }
-        } catch (err) {
-            console.log("exception [" + err.name + "] msg[" + err.message + "]");
+    	},
+    	
+    	disconnect: function() {
+            try {
+                if (_SASocket != null) {
+                    _SASocket.close();
+                    _SASocket = null;
+                }
+            } catch (err) {
+                console.log("exception [" + err.name + "] msg[" + err.message + "]");
+            }
+        },
+    	
+    	fetch: function(data) {
+            try {
+                _SASocket.sendData(CHANNELID, data);
+            } catch (err) {
+                console.log("exception [" + err.name + "] msg[" + err.message + "]");
+            }
+        },
+        
+        createHTML: function (log_string) {
+            var log = document.getElementById('resultBoard');
+            log.innerHTML = log.innerHTML + "<p style='color:white;'> : " + log_string + "</p>";
+        },
+        
+        extend: function() {
+            document.getElementById("dist").style.width = "45%";
         }
     }
-
-    my.fetch = function() {
-        try {
-            _SASocket.sendData(CHANNELID, data);
-        } catch (err) {
-            console.log("exception [" + err.name + "] msg[" + err.message + "]");
-        }
-    }
-
-    return my;
-}(tizen, distanceModule, bookmarkModule));
-
-function createHTML(log_string) {
-    var log = document.getElementById('resultBoard');
-    log.innerHTML = log.innerHTML + "<p style='color:white;'> : " + log_string + "</p>";
-}
-
-// ???????
-function extend() {
-    document.getElementById("dist").style.width = "45%";
-}
+});

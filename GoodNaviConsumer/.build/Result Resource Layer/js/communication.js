@@ -23,13 +23,14 @@ var communicationModule = (function(tizen, distanceModule, bookmarkModule) {
             var initDistance = parseInt(distanceInfo.initDistance);
             var normalDistance = parseInt(distanceInfo.normalDistance);
 
-            distanceModule._normalDistance = normalDistance;
-            distanceModule._initDistance = initDistance;
+            distanceModule.setInitDistance(initDistance);
+            distanceModule.setNormalDistance(normalDistance);
             distanceModule.displayTextDistance();
             distanceModule.displayBarDistance();
         }
         // 북마크 추가
         else if (workType == 'C') {
+        	console.log("communicationModule : " + packetContent);
         	bookmarkModule.addBookmark(packetContent);
         }
         // host app 종료시 wearable app 종료
@@ -114,7 +115,7 @@ var communicationModule = (function(tizen, distanceModule, bookmarkModule) {
         }
     }
 
-    my.fetch = function() {
+    my.fetch = function(data) {
         try {
             _SASocket.sendData(CHANNELID, data);
         } catch (err) {

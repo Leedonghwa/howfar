@@ -52,6 +52,22 @@ var distanceModule = (function($, mathModule) {
             el.style.fontSize = '70px';
         }
     }
+    
+    my.getNormalDistance = function() {
+    	return _normalDistance;
+    }
+    
+    my.setNormalDistance = function(dist) {
+    	_normalDistance = dist;
+    }
+    
+    my.getInitDistance = function() {
+    	return _initDistance;
+    }
+    
+    my.setInitDistance = function(initDist) {
+    	_initDistance = initDist;
+    }
 
     /**
      * Display remaining distance by text
@@ -87,7 +103,7 @@ var distanceModule = (function($, mathModule) {
      * Display remaining distance by bar
      */
     my.displayBarDistance = function() {
-        var passedDistance = _normalDistance - _initDistance;
+        var passedDistance = _initDistance - _normalDistance;
         if (passedDistance < 0) {
             passedDistance = 0;
         }
