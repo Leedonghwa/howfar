@@ -91,7 +91,7 @@
 					</div>
 				</section>
 				<section>
-					<div class="title" id="bookmark_title">Bookmark</div>
+					<div class="title" id="bookmark>Bookmark</div>
 					<div class="bookmark">
 						<ul id="bookmarklist" class="ui-listview"></ul>
 					</div>
