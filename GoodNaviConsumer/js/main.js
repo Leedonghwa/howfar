@@ -1,4 +1,4 @@
-define(["jquery", "bookmark", "communication"], function($, bookmark, communication) {
+define(["jquery", "./bookmark", "./communication"], function($, bookmark, communication) {
 	$(document).ready(function() {
 		// bar animation
 		$(".meter > span").each(function() {

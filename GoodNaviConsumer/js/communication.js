@@ -1,4 +1,4 @@
-define(["distance", "bookmark"], function(distance, bookmark) {
+define(["require", "./distance", "./bookmark"], function(distance, bookmark) {
     var _SAAgent = null;
     var _SASocket = null;
     var CHANNELID = 179;
@@ -24,7 +24,7 @@ define(["distance", "bookmark"], function(distance, bookmark) {
         // 북마크 추가
         else if (workType == 'C') {
             console.log("communicationModule : " + packetContent);
-            bookmark.addBookmark(packetContent);
+            require("bookmark").addBookmark(packetContent);
         }
         // host app 종료시 wearable app 종료
         else if (workType == 'D') {
@@ -63,7 +63,7 @@ define(["distance", "bookmark"], function(distance, bookmark) {
             _SASocket.setDataReceiveListener(onreceive);
             _SASocket.setSocketStatusListener(function(reason) {
                 console.log("Service connection lost, Reason : [" + reason + "]");
-                my.disconnect();
+                disconnect();
             });
         },
         onerror: onerror
