@@ -1,4 +1,4 @@
-define(["jquery", "./bookmark", "./communication"], function($, bookmark, communication) {
+define(["jquery", "./bookMark", "./communication"], function($, bookmark, communication) {
 	console.log("main.js: init!");
 	$(document).ready(function() {
 		// bar animation
