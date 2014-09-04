@@ -267,7 +267,7 @@ body {
 Listview : second page
 *************************/
 #bookmark_title {
-	padding: 5px 20px;
+	padding: 5px 13px;
 }
 .ui-content section .bookmark{
 	position: absolute;
