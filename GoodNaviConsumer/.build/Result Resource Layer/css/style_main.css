@@ -144,7 +144,7 @@
 	-webkit-animation: none;
 	background-image: none;
 }
-.name {
+.title {
 	position: absolute;
 	width: 100%;
 	height: 15%;
@@ -264,8 +264,11 @@ body {
   overflow-scrolling: touch;
 }
 /************************
-Listview
+Listview : second page
 *************************/
+#bookmark_title {
+	padding: 5px 20px;
+}
 .ui-content section .bookmark{
 	position: absolute;
 	width: 100%;
@@ -280,12 +283,11 @@ Listview
   min-height: 5.294117647058823rem;
   padding: 1.2352941176470589rem 0.47058823529411764rem 1.1764705882352942rem 0.9411764705882353rem;
   border-bottom: 1px solid #CCCCCC;
-  color: #AAAAAA;
+  color: #909090;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   position: relative;
- 
   }
   
 .ui-listview li > * {
