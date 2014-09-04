@@ -87,15 +87,32 @@ G.distanceModule = (function($, mathModule) {
      * Display remaining distance by bar
      */
     my.displayBarDistance = function() {
-        var passedDistance = _normalDistance - _initDistance;
+        var passedDistance = _initDistance - _normalDistance;
+        console.log("passedDistance: " + passedDistance);
         if (passedDistance < 0) {
             passedDistance = 0;
         }
 
-        var percentPassed = parseInt((passedDistance / initDistance) * 100);
+        var percentPassed = parseInt((passedDistance / _initDistance) * 100);
 
         document.getElementById("distBar").style.width = percentPassed + "%";
         document.getElementById("distancePercent").innerHTML = percentPassed + "%";
+    }
+
+    my.getInitDistance = function() {
+    	return _initDistance;
+    }
+    
+    my.setInitDistance = function(initDist) {
+    	_initDistance = initDist;
+    }
+    
+    my.getNormalDistance = function() {
+    	return _normalDistance;
+    }
+    
+    my.setNormalDistance = function(normalDist) {
+    	_normalDistance = normalDist;
     }
 
     return my;

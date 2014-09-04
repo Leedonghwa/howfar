@@ -20,16 +20,19 @@ G.communicationModule = (function(distanceModule, bookmarkModule) {
             var distanceInfo = JSON.parse(packetContent);
             var initDistance = parseInt(distanceInfo.initDistance);
             var normalDistance = parseInt(distanceInfo.normalDistance);
-
-            distanceModule._normalDistance = normalDistance;
-            distanceModule._initDistance = initDistance;
+            
+            console.log("initDistance: " + initDistance);
+            console.log("normalDistance: " + normalDistance);
+            
+            distanceModule.setInitDistance(initDistance);
+            distanceModule.setNormalDistance(normalDistance);
             distanceModule.displayTextDistance();
             distanceModule.displayBarDistance();
         }
         // 북마크 추가
         else if (workType == 'C') {
         	console.log("communicationModule addbookmark: " + packetContent);
-        	bookmarkModule.addBookmark(packetContent);
+        	G.bookmarkModule.addBookmark(packetContent);
         }
         // host app 종료시 wearable app 종료
         else if (workType == 'D') {

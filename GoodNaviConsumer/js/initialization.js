@@ -38,13 +38,13 @@
 		}
 	 
 		function onScreenStateChanged(previousState, changedState) {
-	 				console.log("Screen state changed from" + previousState + "to" + changedState);
-	 				if (changedState == "SCREEN_OFF") {
-	 					communicationModule.fetch("BEND");	
-	 				}
-	 				else if (changedState == "SCREEN_NORMAL") {
-	 					communicationModule.fetch("BSTART");
-	 				}
+			console.log("Screen state changed from" + previousState + "to" + changedState);
+			if (changedState == "SCREEN_OFF") {
+				communicationModule.fetch("BEND");	
+			}
+			else if (changedState == "SCREEN_NORMAL") {
+				communicationModule.fetch("BSTART");
+			}
 		}
 		tizen.power.setScreenStateChangeListener(onScreenStateChanged); 
 	});
