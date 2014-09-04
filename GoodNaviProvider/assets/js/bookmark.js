@@ -37,6 +37,12 @@ function saveBookmark() {
 		localStorage.setItem('AddressList', JSON.stringify(storage));
 	}
 	
+
+	var isDuplicated = JSON.parse(localStorage.getItem(mDestPlaceInfo.address));
+	if (isDuplicated) {
+		return;
+	}
+	
 	var arrayLength = storage.length;
 	storage[arrayLength] = mDestPlaceInfo.name;
 	storage[arrayLength+1] = mDestPlaceInfo.address;
@@ -46,12 +52,17 @@ function saveBookmark() {
 	localStorage.setItem(mDestPlaceInfo.address, JSON.stringify(mDestPlaceInfo.place));
 
 	loadAddress();
-	sendBookmarkListToAndroid(JSON.stringify(storage));
+	sendBookmarkListToAndroid();
 }
 
 // 안드로이드로 북마크 리스트 전송
-function sendBookmarkListToAndroid(bookmarkList) {
-	window.android.sendBookmarkList(bookmarkList);
+function sendBookmarkListToAndroid() {
+	var storage = JSON.parse(localStorage.getItem('AddressList'));
+	if (!storage) {
+		storage = [];
+		localStorage.setItem('AddressList', JSON.stringify(storage));
+	}
+	window.android.sendBookmarkList(JSON.stringify(storage));
 }
 
 // 북마크 삭제

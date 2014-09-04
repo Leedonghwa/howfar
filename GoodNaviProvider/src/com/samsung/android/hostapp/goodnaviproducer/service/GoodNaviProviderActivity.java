@@ -1,5 +1,7 @@
 package com.samsung.android.hostapp.goodnaviproducer.service;
 
+import org.apache.http.util.EncodingUtils;
+
 import com.samsung.android.hostapp.goodnaviproducer.service.GoodNaviProviderService.LocalBinder;
 
 import android.app.ActionBar;
@@ -20,12 +22,14 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 
-public class GoodNaviProviderActivity extends Activity{
+public class GoodNaviProviderActivity extends Activity
+{
 	
 	private static final String TAG = "GoodNaviProviderActivity";
 	
 	 public static boolean isUp = false;
 	 private Context mContext;
+	 private BackPressCloseHandler mBackPressCloseHandler;
 	 private GoodNaviProviderService mGNPService;
 	 private final Handler mHandler = new Handler();
 	 WebView mWebView;
@@ -45,16 +49,29 @@ public class GoodNaviProviderActivity extends Activity{
 	        }
 	    };
 	 
-    public class GeoWebViewClient extends WebViewClient {
+    public class GeoWebViewClient extends WebViewClient 
+    {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             // When user clicks a hyperlink, load in the existing WebView
             view.loadUrl(url);
             return true;
         }
+        
+        @Override
+        public void onPageFinished(WebView view, String url) {
+        	Log.d(TAG, "onPageFinished");
+        	Intent i = getIntent();
+            if (i.getAction().equalsIgnoreCase("gearAlarm")) {
+            	Log.d(TAG, "onPageFinished gearAlarm");
+            	mWebView.loadUrl("javascript:setIsGearConnected(true)");
+            	sendBookmarkToGear();
+            }
+        }
     }
  
-    public class GeoWebChromeClient extends WebChromeClient {
+    public class GeoWebChromeClient extends WebChromeClient 
+    {
         @Override
         public void onGeolocationPermissionsShowPrompt(String origin,
                 GeolocationPermissions.Callback callback) {
@@ -71,28 +88,16 @@ public class GoodNaviProviderActivity extends Activity{
         }
     }
     
-    private class AndroidBridge {
-    	 
-    	// 최초 거리를 전송. A + 거리
-    	@JavascriptInterface
-    	public void sendInitDistance(final String message) {
-    		mHandler.post(new Runnable() {
-    			@Override
-				public void run() {
-    				String packet = "A" + message;
-    				mGNPService.sendData(packet);
-    				Log.d("AndroidBridge_InitDistance", packet);
-				}
-    		}); 
-    	}
-    	
-    	// 거리를 전송. B + 거리
+    // WebView에서 안드로이드 함수 호출을 가능케 하는 bridge
+    private class AndroidBridge 
+    {
+    	// 거리를 전송. 최초거리, 일반거리
     	@JavascriptInterface
     	public void sendDistance(final String message) {
     		mHandler.post(new Runnable() {
     			@Override
 				public void run() {
-    				String packet = "B" + message;
+    				String packet = "A" + message;
     				mGNPService.sendData(packet);
     				Log.d("AndroidBridge_Distance", packet);
 				}
@@ -115,12 +120,13 @@ public class GoodNaviProviderActivity extends Activity{
  
     @Override
     public void onCreate(Bundle savedInstanceState) {
+    	Log.d(TAG, "onCreate()");
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         
     	isUp = true;
     	mContext = getApplicationContext();
-    	
+    	mBackPressCloseHandler = new BackPressCloseHandler(this);
         mWebView = (WebView)findViewById(R.id.webview);
         
         // Brower niceties -- pinch / zoom, follow links in place
@@ -138,62 +144,104 @@ public class GoodNaviProviderActivity extends Activity{
         mWebView.getSettings().setDomStorageEnabled(true);
         
         mWebView.setWebChromeClient(new GeoWebChromeClient());
+        
         // Load web page
-        mWebView.loadUrl("file:///android_asset/location_test01_7.13.html");
+         mWebView.loadUrl("file:///android_asset/webApp.html");
         
         mContext.bindService(new Intent(getApplicationContext(), GoodNaviProviderService.class), 
                 this.mGNPConnection, Context.BIND_AUTO_CREATE);
     }
     
     public void onDestroy() {
+    	Log.d(TAG, "onDestroy()");
+    	stopGPSInWeb();		// 웹의 GPS를 멈춘다.
+    	finishGear();		// 기어를 종료
         super.onDestroy();
         isUp = false;
     }
 
     @Override
     protected void onStart() {
+    	Log.d(TAG, "onStart()");
         super.onStart();
         isUp = true;
     }
     
     @Override
+    protected void onRestart() {
+    	Log.d(TAG, "onRestart()");
+    	// 추가 2
+    	mWebView.loadUrl("javascript:setIsAndroidConnected(true)");
+    	mWebView.loadUrl("javascript:runNavigator()");
+    	super.onRestart();
+    }
+    
+    @Override
     protected void onStop() {
-        super.onStop();
-        isUp = false;
+    	Log.d(TAG, "onStop()");
+    	// 추가 2
+    	mWebView.loadUrl("javascript:setIsAndroidConnected(false)");
+    	mWebView.loadUrl("javascript:stopNavigator()");
+    	super.onStop();
     }
     
 	@Override
     protected void onPause() {
+		Log.d(TAG, "onPause()");
         super.onPause();
-        isUp = false;
     }
     
     @Override
     protected void onResume() {
+    	Log.d(TAG, "onResume()");
         super.onResume();
         isUp = true;
     }
  
     @Override
     public void onBackPressed() {
-        // Pop the browser back stack or exit the activity
-    	//super.onBackPressed();
-    	android.os.Process.killProcess(android.os.Process.myPid());
-        isUp = false;
-        
-        /*
-    	if (mWebView.canGoBack()) {
-            mWebView.goBack();
-        }
-        else {
-            super.onBackPressed();
-            isUp = false;
-        }
-        */
+    	isUp = false;
+    	mBackPressCloseHandler.onBackPressed();
+     }
+    
+    // message to web
+    public void messageFromGearToWeb(String msg) {
+    	Log.d("messageFromGear", msg);
+    	
+    	if (msg.charAt(0) == 'A') {
+    		mWebView.loadUrl("javascript:searchAddressFromGear('"+msg.substring(1)+"')");
+        	Log.d("messageFromGear", msg);
+    	}
+    	
+    	else if (msg.charAt(0) == 'B') {
+    		Log.d("messageFromGear", msg);
+    		if (msg.substring(1).equals("END")) {
+    			mWebView.loadUrl("javascript:setIsGearConnected(false)");
+    			mWebView.loadUrl("javascript:stopNavigator()");
+    		}
+    		else if (msg.substring(1).equals("START")) {
+    			mWebView.loadUrl("javascript:setIsGearConnected(true)");
+    			mWebView.loadUrl("javascript:runNavigator()");
+    		}
+    	}
+    	
     }
     
-    public void messageFromGear(String msg) {
-    	mWebView.loadUrl("javascript:searchAddressFromGear('"+msg+"')");
-    	Log.d("messageFromGear", msg);
+    // stop GPS in web
+    public void stopGPSInWeb() {
+    	mWebView.loadUrl("javascript:requestFromAndroidToStopGPS()");
+    }
+    
+    public void finishGear() {
+    	mGNPService.sendData("DEND");
+    }
+    
+    // if gear is disconnected,  
+    public void gearDisconnected() {
+    	mWebView.loadUrl("javascript:setIsGearConnected(false)");
+    }
+    
+    public void sendBookmarkToGear() {
+    	mWebView.loadUrl("javascript:sendBookmarkListToAndroid()");
     }
 }

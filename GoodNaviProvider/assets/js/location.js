@@ -1,18 +1,23 @@
-var mMap;						// ��
-var mUserMarker = null;			// ���� ��Ŀ
-var mDestMarker = null;			// ������ ��Ŀ
-var mDestPlaceInfo = null;		// ������ ����
-var mGeodesicPoly;				// �� �׸���
+var mMap;						// google map
+var mUserMarker = null;			// user marker
+var mDestMarker = null;			// destination marker
+var mDestPlaceInfo = null;		// destination place object
+var mGeodesicPoly;				// used to draw lines
 var mWatchId = null;			// watchPosition ID
-var mIsSearch = false;			// ������������ ���� �׸��� �������� ���� 
-var mDistance = 0;				// ������������ �Ÿ�
-var mIsInitDistance = false;	// ������������ ���� �Ÿ� ����
+var mIsSearch = false;			// check whether or not CD is working
+var mIsInitDistance = false;	// check current loop is first calculating distance
 var mInfoWindow = new google.maps.InfoWindow();
+var isGearConnected = false;
+var isAndroidConnected = false;
+var isCameraFollowing = false;
 
-function initialize() {
+function initialize() 
+{
+	setIsAndroidConnected(true);
+
     var mapOptions = {
         zoom: 14,
-	disableDefaultUI: true
+		disableDefaultUI: true
     };
     mMap = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 	
@@ -33,8 +38,9 @@ function initialize() {
 	loadAddress();
 }
 
-// �ܰ� ȭ�� �̵� �̺�Ʈ�� �߻��ϸ� �ܼ��� ����� ��ġ�� ��Ŀ�� ǥ���ϵ��� ����
-function mapMoveEventInit() {
+// prevent camera following the user when view move
+function mapMoveEventInit() 
+{
 	google.maps.event.addListener(mMap, 'zoom_changed', function() {
 		watchPosition(onlyMarkUser);}
 	);
@@ -43,9 +49,12 @@ function mapMoveEventInit() {
 	);
 }
 
-// watchPosition�� �Բ� ���. ��Ŀ�� ǥ���ϸ� ȭ���� ����ڸ� ���
-// �Ÿ� ������ ���۵Ǹ� �Ÿ��� ����ϰ� ������������ ���� ǥ��
-var followUser = function (position) {
+// is used as a function argument of watchPosition function
+// camera follow user in the map
+var followUser = function (position) 
+{
+	setIsCameraFollowing(true);
+
 	var lat = position.coords.latitude;
 	var lng = position.coords.longitude;
 	var pos = new google.maps.LatLng(lat, lng);
@@ -55,37 +64,15 @@ var followUser = function (position) {
 	mUserMarker.setVisible(true);
 	moveMapByPos(pos);
 	
-	if (mIsSearch) {
-		drawPoly(pos, mDestMarker.getPosition());
-		mDistance = calcDistance(pos, mDestMarker.getPosition());
-		sendDistanceToAndroid(mDistance);
-				
-		mDistance = parseFloat(mDistance);
-		
-		if (mDistance > 1000) {
-			mDistance = roundXL(mDistance/1000, 2) + "km";
-		}
-		else {
-			mDistance = mDistance + "m";
-		}
-		document.getElementById('distance').value = mDistance;
-		
-	}
+	drawPolyANDSendDistance(pos);
 }
 
-function roundXL(n, digits) {
-	  if (digits >= 0) return parseFloat(n.toFixed(digits)); // ?뚯닔遺 諛섏삱由?
+// is used as a function argument of watchPosition function
+// only mark user 
+var onlyMarkUser = function (position) 
+{
+	setIsCameraFollowing(false);
 
-	  digits = Math.pow(10, digits); // ?뺤닔遺 諛섏삱由?
-	  var t = Math.round(n * digits) / digits;
-
-	  return parseFloat(t.toFixed(0));
-}
-
-
-// watchPosition�� �Բ� ���. �ʿ� ��Ŀ�� ǥ��
-// �Ÿ� ������ ���۵Ǹ� �Ÿ��� ����ϰ� ������������ ���� ǥ��
-var onlyMarkUser = function (position) {
 	var lat = position.coords.latitude;
 	var lng = position.coords.longitude;
 	var pos = new google.maps.LatLng(lat, lng);
@@ -94,24 +81,23 @@ var onlyMarkUser = function (position) {
 	mUserMarker.setPosition(pos);
 	mUserMarker.setVisible(true);
 
+	drawPolyANDSendDistance(pos);
+}
+
+// is used in followUser and onlyMarkUser(look upward)
+function drawPolyANDSendDistance(currentPosition)
+{
 	if (mIsSearch) {
-		drawPoly(pos, mDestMarker.getPosition());
-		mDistance = calcDistance(pos, mDestMarker.getPosition());
+		drawPoly(currentPosition, mDestMarker.getPosition());
+		mDistance = calcDistance(currentPosition, mDestMarker.getPosition());
 		sendDistanceToAndroid(mDistance);
-		mDistance = parseFloat(mDistance);		
-		if (mDistance > 1000) {
-			mDistance = roundXL(mDistance/1000, 2) + "km";
-		}
-		else {
-			mDistance = mDistance + "m";
-		}		
-		document.getElementById('distance').value = mDistance;
 				
+		displayTextDistance();
 	}
 }
 
-// ������ġ ��� ����
-function watchPosition(coreFunction) {
+function watchPosition(coreFunction) 
+{
 	if (mWatchId != null) {
 		clearWatch();
 	}
@@ -130,18 +116,21 @@ function watchPosition(coreFunction) {
 	}
 }
 
-// ���� ���
-function clearWatch() {
+// stop gps
+function clearWatch() 
+{
+	console.log("clearWatch()");
 	navigator.geolocation.clearWatch(mWatchId);
 }
 
-// ������ ��ǥ ���������� ȭ�� �̵�
+// move view to the selected postion
 function moveMapByPos(position) {
 	mMap.panTo(position);
 }
 
-// ��ġ �ʱ�ȭ. ���� ��ġ�� �����ϰ� ��Ŀ�� ǥ��
-function initPosition() {
+// initPosition
+function initPosition() 
+{
 	var options = {
 		enableHighAccuracy: true,
 		timeout: 5000,
@@ -165,8 +154,9 @@ function initPosition() {
 	);
 }
 
-// ���� ��Ŀ ���
-function setUserMarker(map, pos) {
+// setting for user marker 
+function setUserMarker(map, pos) 
+{
 	mUserMarker = new google.maps.Marker({
         map: map,
         draggable: false,
@@ -174,16 +164,18 @@ function setUserMarker(map, pos) {
 	});
 }
 
-// ���� ��Ŀ ����
-function clearUserMarker() {
+// clear your marker setting
+function clearUserMarker() 
+{
 	if(mUserMarker != null) {
 		mUserMarker.setMap(null);
 		mUserMarker = null;
 	}
 }
 
-// ������ ��Ŀ ���, �ʸ� �����
-function setDestMarker(map) {
+// setting for destination marker
+function setDestMarker(map) 
+{
 	mDestMarker = new google.maps.Marker({
         map: map,
 		draggable: true,
@@ -191,8 +183,9 @@ function setDestMarker(map) {
 	});
 }
 
-// ������ ��Ŀ ����
-function clearDestMarker() {
+// clear destination marker setting
+function clearDestMarker() 
+{
 	if(mDestMarker != null) {
 		mDestMarker.setMap(null);
 		mDestMarker = null;
@@ -200,7 +193,8 @@ function clearDestMarker() {
 }
 
 
-function search_settings() {
+function search_settings() 
+{
 	var input = /** @type {HTMLInputElement} */(
             document.getElementById('pac-input'));
 
@@ -212,13 +206,12 @@ function search_settings() {
     // var mInfoWindow = new google.maps.InfoWindow();
     setDestMarker(mMap);
 
-	// �˻����� �� ȣ��Ǵ� �̺�Ʈ. �ش� �������� �̵��� �� ��Ŀ�� ǥ��. infowindow�� ǥ����
+	// when autocomplete change 
 	google.maps.event.addListener(autocomplete, 'place_changed', function() {
     	howfarStop();
 		mInfoWindow.close();
         mDestMarker.setVisible(false);
         
-		// ��Ұ� ������ ��������
 		var place = autocomplete.getPlace();
         if (!place.geometry) {
             return;
@@ -228,7 +221,6 @@ function search_settings() {
         if (place.geometry.viewport) {
             mMap.fitBounds(place.geometry.viewport);
         } else {
-			// �˻� ��ҷ� �̵�
             mMap.setCenter(place.geometry.location);
             mMap.setZoom(17);    // Why 17? Because it looks good.
         }
@@ -259,8 +251,8 @@ function search_settings() {
     });
 }
 
-// �� �׸��� ����
-function polylineSetting() {
+function polylineSetting() 
+{
 	var geodesicOptions = {
 	        strokeColor: '#00A5FF',
 	        strokeOpacity: 0.8,
@@ -271,43 +263,51 @@ function polylineSetting() {
 	mGeodesicPoly = new google.maps.Polyline(geodesicOptions);
 }
 
-// �� �׸���
-function drawPoly(startPos, DestPos) {
+function drawPoly(startPos, DestPos) 
+{
 	var path = [startPos, DestPos];
     mGeodesicPoly.setPath(path);    
 }
 
-// �Ÿ� ���
-function calcDistance(startPos, DestPos) {
-	 var distance = google.maps.geometry.spherical.computeDistanceBetween(startPos, DestPos);
-	 distance = Math.floor(distance);
-	 return distance;
-}
-
-// ������ġ�� �������� ������ ����. �Ÿ��� ���
-function howfarBegin() {
+function howfarBegin() 
+{
 	mIsSearch = true;
 	mIsInitDistance = true;
 }
 
-// ������ �Ÿ� ��� ����
-function howfarStop() {
+function howfarStop() 
+{
 	mIsSearch = false;
 	mIsInitDistance = false;
 }
 
-// �ȵ���̵�� �Ÿ� ������ ���
-function sendDistanceToAndroid(distance) {
+function sendDistanceToAndroid(distance)
+{
+	if (typeof sendDistanceToAndroid.initDistance == 'undefined') {
+		sendDistanceToAndroid.initDistance = 100;
+	}
+	
+	var distancePacket = {
+			initDistance : sendDistanceToAndroid.initDistance,
+			normalDistance : distance
+		};
 	if (mIsInitDistance) {
-		window.android.sendInitDistance(distance.toString());
+		sendDistanceToAndroid.initDistance = distance;
+		distancePacket.initDistance = sendDistanceToAndroid.initDistance;
+		window.android.sendDistance(JSON.stringify(distancePacket));
 		mIsInitDistance = false;
 	}
 	else {
-		window.android.sendDistance(distance.toString());
+		var distancePacket = {
+			initDistance : sendDistanceToAndroid.initDistance,
+			normalDistance : distance
+		};
+		window.android.sendDistance(JSON.stringify(distancePacket));
 	}
 }
 
-function handleNoGeolocation(errorFlag) {
+function handleNoGeolocation(errorFlag) 
+{
     if (errorFlag) {
         var content = 'Error: The Geolocation service failed.';
     } else {
@@ -316,7 +316,7 @@ function handleNoGeolocation(errorFlag) {
 
     var options = {
         map: mMap,
-	position: new google.maps.LatLng(37.56667, 126.97838),
+		position: new google.maps.LatLng(37.56667, 126.97838),
         content: content
     };
 
@@ -325,3 +325,48 @@ function handleNoGeolocation(errorFlag) {
 }
 
 google.maps.event.addDomListener(window, 'load', initialize);
+
+// run navigator if either isGearConnected or isAndroidConnected is true
+function runNavigator()
+{
+	console.log("runNavigator()");
+	if (isGearConnected || isAndroidConnected) {
+		if (isCameraFollowing) {
+			watchPosition(followUser);
+		}
+		else {
+			watchPosition(onlyMarkUser);
+		}
+	}
+}
+
+// stop navigator if both isGearConnected and isAndroidConnected are false
+function stopNavigator() 
+{
+	console.log("stopNavigator()");
+	if (!isGearConnected && !isAndroidConnected) {
+		clearWatch();	
+	}
+}
+
+function requestFromAndroidToStopGPS() 
+{
+	clearWatch();
+}
+
+function setIsGearConnected(connected)
+{
+	console.log("setIsGearConnected()");
+	isGearConnected = connected;
+}
+
+function setIsAndroidConnected(connected)
+{
+	console.log("setIsAndroidConnected()");
+	isAndroidConnected = connected;
+}
+
+function setIsCameraFollowing(following)
+{
+	isCameraFollowing = following;
+}
