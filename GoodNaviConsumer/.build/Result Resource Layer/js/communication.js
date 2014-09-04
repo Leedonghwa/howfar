@@ -1,6 +1,4 @@
-var tizen, distanceModule, bookmarkModule;
-
-var communicationModule = (function(tizen, distanceModule, bookmarkModule) {
+G.communicationModule = (function(distanceModule, bookmarkModule) {
     var my = {};
 
     var _SAAgent = null;
@@ -30,6 +28,7 @@ var communicationModule = (function(tizen, distanceModule, bookmarkModule) {
         }
         // 북마크 추가
         else if (workType == 'C') {
+        	console.log("communicationModule addbookmark: " + packetContent);
         	bookmarkModule.addBookmark(packetContent);
         }
         // host app 종료시 wearable app 종료
@@ -114,7 +113,7 @@ var communicationModule = (function(tizen, distanceModule, bookmarkModule) {
         }
     }
 
-    my.fetch = function() {
+    my.fetch = function(data) {
         try {
             _SASocket.sendData(CHANNELID, data);
         } catch (err) {
@@ -123,7 +122,7 @@ var communicationModule = (function(tizen, distanceModule, bookmarkModule) {
     }
 
     return my;
-}(tizen, distanceModule, bookmarkModule));
+}(G.distanceModule, G.bookmarkModule));
 
 function createHTML(log_string) {
     var log = document.getElementById('resultBoard');

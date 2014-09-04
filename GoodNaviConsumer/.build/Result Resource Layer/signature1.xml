@@ -4,7 +4,7 @@
 <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
 <Reference URI="author-signature.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>ePG4KU/6F8VzBf0Yuv5nLWKRVNvfUQysNy7kErFyKCA=</DigestValue>
+<DigestValue>BEm94+K7dfbG+9/EWgbprxJkgu8qVktgR5j/qrnJ+yE=</DigestValue>
 </Reference>
 <Reference URI="config.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -28,7 +28,7 @@
 </Reference>
 <Reference URI="index.html">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>XAv+FXMgydgSAfS8w1HCzj0hAytT5c4U7UEju+Q4jnM=</DigestValue>
+<DigestValue>Ek7Dp4CZ2Pm49ZUSntjl97ebzq7nwpO7Wf+/VlpwE1c=</DigestValue>
 </Reference>
 <Reference URI="jds_test.txt">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -44,15 +44,15 @@
 </Reference>
 <Reference URI="js/bookMark.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>MFRPGe+r75RlrRQ2ZykGHPuhAXoMpYwUB8/WIRkchPw=</DigestValue>
+<DigestValue>zIFFV/9eGDR9gaIe6IdxrVDnx/eFFTI9TO26oGcYqho=</DigestValue>
 </Reference>
 <Reference URI="js/communication.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>jKMjrrJOj77nA+lEPk5ZpXqPp5WV0M5ZaI6hfN/gI0U=</DigestValue>
+<DigestValue>EmWVw9p0FVbW9WXhXGvwjhwrcQpwwdpFnnTf+iPLOYc=</DigestValue>
 </Reference>
 <Reference URI="js/distance.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>n4gEC+rvo1vxVMdrSwrw/YTzVOd+O4fXioATTqyczQg=</DigestValue>
+<DigestValue>m77xkCM+7N6rvNAUIyStuxoxUueZOr849RSMsk/TNm0=</DigestValue>
 </Reference>
 <Reference URI="js/hsection.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -60,7 +60,7 @@
 </Reference>
 <Reference URI="js/initialization.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>zhUTkncnCZl3AU2FQcdqcoaQlg6BYmGh5nQIRq206ik=</DigestValue>
+<DigestValue>r5TfjRsjtFAu4t6zCT/pH1XeqPel0giqH6CnGlrCbUA=</DigestValue>
 </Reference>
 <Reference URI="js/jquery-2.1.1.min.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -68,7 +68,7 @@
 </Reference>
 <Reference URI="js/math.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>epfesA2PE+KsqhGjCDBKw5vyE1eDcKlK+uX7cza3TDc=</DigestValue>
+<DigestValue>GGqYLhZeAk2+rOthP59hAELUPtMl6P+/JhyUgXCJ6NM=</DigestValue>
 </Reference>
 <Reference URI="lib/tau/LICENSE.Flora">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -323,11 +323,11 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-jrkelCK0JgJrh2zjJZs8+z6ccPnxz+xwL97IoR9HcO4kDUr4ME9jJSeSzujSRXxoP+z1N3cAhV4M
-CRF7amt2/sXnbjayB7owrubn0jDSTNIg+7syTNiEeFrYXqfjZy6tZ4eyMKCMvREPxydzWcvKzvGR
-aSefha7Wh9DiFCRYKmER43n1+/iHlXo5SIZ6irDzpjaRv8r+7DEXGZVak0oiB/2J5YI+nRzSFaEA
-XAP1jpQQfTMY+riSxmpW+ZK94X+7a0Qf8Ex1T+fXYVKIhiO3wMosjgutr2ishAgNZsgxMrjTIvrs
-CiHZmfUF651QF4DQHQAL9zhm+yWGKCeJA3byvQ==
+Ae477w4UnlnLTFlTF06TzDT9OuqUyGqNsR7vx+2rIrAzxu1ABHQo9hm5VaZYiNCPEP5tHhne0uu1
+5AS7ss0npI7j16X6+RrnLDE30Mkwh1qIayW+WrGKTfAM7uTT9admz1lxqVfofSJtn1tulIwXV0vy
+I9SGwNQuSlhb3AOXhU3wr4uEAB/G8Op7Ta8HbZPThqnERjlN/g6KCPlGRZ3vvRJspTvrHdZcZ4ky
+sPctFTkSyJEWDeQFNc3JYWFDN4yUtPlZM6eVs+KNW12sYh8jFzE2qN0URlX/S6cf2RkYevX9qrbS
+7Vp5UNXVwqI3muBLbgkEK0glLIJ0SQgsGrWfsQ==
 </SignatureValue>
 <KeyInfo>
 <X509Data>

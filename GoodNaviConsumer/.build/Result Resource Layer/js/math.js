@@ -1,6 +1,6 @@
 // 소수점 자리수 지정
 
-var mathModule = (function() {
+G.mathModule = (function() {
 	var my = {};
 	
 	my.roundXL = function (n, digits) {

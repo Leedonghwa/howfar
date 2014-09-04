@@ -1,4 +1,4 @@
-var distanceModule = (function($, mathModule) {
+G.distanceModule = (function($, mathModule) {
     var my = {};
 
     var _isMile = false; // T : english system, F : metric system
@@ -99,4 +99,4 @@ var distanceModule = (function($, mathModule) {
     }
 
     return my;
-}(jQuery, mathModule));
+}(jQuery, G.mathModule));

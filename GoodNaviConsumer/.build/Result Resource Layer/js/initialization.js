@@ -1,6 +1,4 @@
-var tizen, jQuery, bookmarkModule, communicationModule;
-
-(function(tizen, $, bookmarkModule, communicationModule){
+(function($, bookmarkModule, communicationModule){
 	$(document).ready(function() {
 		// bar animation
 		$(".meter > span").each(function() {
@@ -30,11 +28,11 @@ var tizen, jQuery, bookmarkModule, communicationModule;
 		document.addEventListener("visibilitychange", pageVisibilityHandler, false);
 		function pageVisibilityHandler() {
 			if (!(document.hidden)) {
-				fetch("BSTART");
+				communicationModule.fetch("BSTART");
 				console.log("page visible");
 			} 
 			else {
-				fetch("BEND");
+				communicationModule.fetch("BEND");
 				console.log("page hidden");
 			}
 		}
@@ -42,12 +40,12 @@ var tizen, jQuery, bookmarkModule, communicationModule;
 		function onScreenStateChanged(previousState, changedState) {
 	 				console.log("Screen state changed from" + previousState + "to" + changedState);
 	 				if (changedState == "SCREEN_OFF") {
-	 					fetch("BEND");	
+	 					communicationModule.fetch("BEND");	
 	 				}
 	 				else if (changedState == "SCREEN_NORMAL") {
-	 					fetch("BSTART");
+	 					communicationModule.fetch("BSTART");
 	 				}
 		}
 		tizen.power.setScreenStateChangeListener(onScreenStateChanged); 
 	});
-}(tizen, jQuery, bookmarkModule, communicationModule))
+}(jQuery, G.bookmarkModule, G.communicationModule))
