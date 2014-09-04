@@ -1,4 +1,5 @@
 define(["jquery", "./bookmark", "./communication"], function($, bookmark, communication) {
+	console.log("main.js: init!");
 	$(document).ready(function() {
 		// bar animation
 		$(".meter > span").each(function() {
@@ -9,6 +10,8 @@ define(["jquery", "./bookmark", "./communication"], function($, bookmark, commun
 					width: $(this).data("origWidth")
 				}, 1200);
 		});
+		
+		console.log("main.js: ready!");
 		
 		// add eventListener for tizenhwkey
 		document.addEventListener('tizenhwkey', function(e) {

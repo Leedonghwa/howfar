@@ -3,12 +3,14 @@
 // Configure loading modules from the lib directory,
 // except 'app' ones,
 requirejs.config({
-    "baseUrl": "../lib",
+    "baseUrl": "./lib",
     "paths": {
-      "app": "../js",
-      "jquery": "jquery-2.1.1.min.js"
+      "js": "../js",
+      "jquery": "jquery.js"
     }
 });
 
+console.log("initialization.js: requirejs.config");
+
 //Load the main app module to start the app
-requirejs(["app/main"]);
+requirejs(["js/main"]);
