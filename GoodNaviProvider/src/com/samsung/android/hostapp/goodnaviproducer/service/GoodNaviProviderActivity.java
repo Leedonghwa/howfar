@@ -61,7 +61,7 @@ public class GoodNaviProviderActivity extends Activity {
 			Intent i = getIntent();
 			if (i.getAction().equalsIgnoreCase("gearAlarm")) {
 				Log.d(TAG, "onPageFinished gearAlarm");
-				mWebView.loadUrl("javascript:setIsGearConnected(true)");
+				mWebView.loadUrl("javascript:G.locationModule.setIsGearConnected(true)");
 				sendBookmarkToGear();
 			}
 		}
@@ -168,8 +168,8 @@ public class GoodNaviProviderActivity extends Activity {
 	protected void onRestart() {
 		Log.d(TAG, "onRestart()");
 		// 추가 2
-		mWebView.loadUrl("javascript:setIsAndroidConnected(true)");
-		mWebView.loadUrl("javascript:runNavigator()");
+		mWebView.loadUrl("javascript:G.locationModule.setIsAndroidConnected(true)");
+		mWebView.loadUrl("javascript:G.locationModule.runNavigator()");
 		super.onRestart();
 	}
 
@@ -177,8 +177,8 @@ public class GoodNaviProviderActivity extends Activity {
 	protected void onStop() {
 		Log.d(TAG, "onStop()");
 		// 추가 2
-		mWebView.loadUrl("javascript:setIsAndroidConnected(false)");
-		mWebView.loadUrl("javascript:stopNavigator()");
+		mWebView.loadUrl("javascript:G.locationModule.setIsAndroidConnected(false)");
+		mWebView.loadUrl("javascript:G.locationModule.stopNavigator()");
 		super.onStop();
 	}
 
@@ -206,7 +206,7 @@ public class GoodNaviProviderActivity extends Activity {
 		Log.d("messageFromGear", msg);
 
 		if (msg.charAt(0) == 'A') {
-			mWebView.loadUrl("javascript:searchAddressFromGear('"
+			mWebView.loadUrl("javascript:G.bookmarkModule.searchAddressFromGear('"
 					+ msg.substring(1) + "')");
 			Log.d("messageFromGear", msg);
 		}
@@ -214,11 +214,11 @@ public class GoodNaviProviderActivity extends Activity {
 		else if (msg.charAt(0) == 'B') {
 			Log.d("messageFromGear", msg);
 			if (msg.substring(1).equals("END")) {
-				mWebView.loadUrl("javascript:setIsGearConnected(false)");
-				mWebView.loadUrl("javascript:stopNavigator()");
+				mWebView.loadUrl("javascript:G.locationModule.setIsGearConnected(false)");
+				mWebView.loadUrl("javascript:G.locationModule.stopNavigator()");
 			} else if (msg.substring(1).equals("START")) {
-				mWebView.loadUrl("javascript:setIsGearConnected(true)");
-				mWebView.loadUrl("javascript:runNavigator()");
+				mWebView.loadUrl("javascript:G.locationModule.setIsGearConnected(true)");
+				mWebView.loadUrl("javascript:G.locationModule.runNavigator()");
 			}
 		}
 
@@ -226,7 +226,7 @@ public class GoodNaviProviderActivity extends Activity {
 
 	// stop GPS in web
 	public void stopGPSInWeb() {
-		mWebView.loadUrl("javascript:requestFromAndroidToStopGPS()");
+		mWebView.loadUrl("javascript:G.locationModule.requestFromAndroidToStopGPS()");
 	}
 
 	public void finishGear() {
@@ -235,10 +235,10 @@ public class GoodNaviProviderActivity extends Activity {
 
 	// if gear is disconnected,
 	public void gearDisconnected() {
-		mWebView.loadUrl("javascript:setIsGearConnected(false)");
+		mWebView.loadUrl("javascript:G.locationModule.setIsGearConnected(false)");
 	}
 
 	public void sendBookmarkToGear() {
-		mWebView.loadUrl("javascript:sendBookmarkListToAndroid()");
+		mWebView.loadUrl("javascript:G.bookmarkModule.sendBookmarkListToAndroid()");
 	}
 }

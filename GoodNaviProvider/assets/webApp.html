@@ -162,6 +162,10 @@ li:hover {
 &libraries=geometry&libraries=places&sensor=true&language=en"></script>
 
 <script>
+	var G = {};
+</script>
+
+<script>
 var clicked = false;
 function BookmarkControl() {
 	var bar = document.getElementById('bookmark_bar');
@@ -181,30 +185,30 @@ function BookmarkControl() {
 	}
 }
 </script>
-
-<script src="js/location.js"></script>
+<script src="js/math.js"></script>
 <script src="js/bookmark.js"></script>
 <script src="js/distance.js"></script>
-<script src="js/math.js"></script>
+<script src="js/location.js"></script>
 </head>
-<body>
-<input id="pac-input" class="controls" type="text"
-placeholder="Enter a location"/>
 
-<div id="map-canvas"></div>
-<p id="distanceDisplay" onclick="switchDistanceDisplayUnit()"></p>
-<div class="btn_wrap" style="right: 33%">
-	<input type="button" id="howfarBtn" class="btn_setting" style="background: url(search1.png)">
-</div>
-<div class="btn_wrap" style="right: 18%">
-	<input type="button" id="myPosBtn" class="btn_setting" style="background: url(myPosition1.png)">
-</div>
-<div class="btn_wrap" style="right: 3%">
-	<input type="button" id="saveBookmark" class="btn_setting" style="background: url(bookmark1.png)">
-</div>
-<div class="bookmark_bar" id="bookmark_bar" onclick="BookmarkControl()"><p>BOOKMARK</p></div>
-<div class="bookmark_wrapper" id="bookmark_wrapper">
-<ul id="bookmarklist" class="bookmarklist"></ul>
-</div>
+<body>
+	<input id="pac-input" class="controls" type="text"
+	placeholder="Enter a location"/>
+
+	<div id="map-canvas"></div>
+	<p id="distanceDisplay" onclick="switchDistanceDisplayUnit()"></p>
+	<div class="btn_wrap" style="right: 33%">
+		<input type="button" id="howfarBtn" class="btn_setting" style="background: url(search1.png)">
+	</div>
+	<div class="btn_wrap" style="right: 18%">
+		<input type="button" id="myPosBtn" class="btn_setting" style="background: url(myPosition1.png)">
+	</div>
+	<div class="btn_wrap" style="right: 3%">
+		<input type="button" id="saveBookmark" class="btn_setting" style="background: url(bookmark1.png)">
+	</div>
+	<div class="bookmark_bar" id="bookmark_bar" onclick="BookmarkControl()"><p>BOOKMARK</p></div>
+	<div class="bookmark_wrapper" id="bookmark_wrapper">
+		<ul id="bookmarklist" class="bookmarklist"></ul>
+	</div>
 </body>
 </html>
