@@ -115,6 +115,8 @@ G.bookmarkModule = (function(locationModule) {
 		my.clickBookmark(address);
 		G.locationModule.howfarBegin();
 	}
+
+	return my;
 }(G.locationModule));
 
 

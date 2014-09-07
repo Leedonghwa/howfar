@@ -85,4 +85,4 @@ G.distanceModule = (function(mathModule) {
 	}
 
 	return my;
-}(G.mathModule);
+}(G.mathModule));

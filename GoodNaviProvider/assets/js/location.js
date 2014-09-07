@@ -99,6 +99,7 @@ G.locationModule = (function(distanceModule, bookmarkModule) {
 
 	// move view to the selected postion
 	function moveMapByPos(position) {
+		console.log("moveMapByPos: " + position);
 		mMap.panTo(position);
 	}
 
@@ -127,21 +128,30 @@ G.locationModule = (function(distanceModule, bookmarkModule) {
 			maximumAge: 0
 		};
 
-		navigator.geolocation.getCurrentPosition(
-			function(position) {
-				var lat = position.coords.latitude;
-				var lng = position.coords.longitude;
-				pos = new google.maps.LatLng(lat, lng);
+		console.log("initPosition");
 
-				moveMapByPos(pos);
-				clearUserMarker();
-				setUserMarker(mMap, pos);
-			},
-			function() {
-				handleNoGeolocation(true);
-			},
-			options
-		);
+		if(navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(
+				function(position) {
+					console.log("navigator.getCurrentPosition: " + position);
+					var lat = position.coords.latitude;
+					var lng = position.coords.longitude;
+					pos = new google.maps.LatLng(lat, lng);
+
+					moveMapByPos(pos);
+					clearUserMarker();
+					setUserMarker(mMap, pos);
+				},
+				function() {
+					handleNoGeolocation(true);
+				},
+				options
+			);
+		}
+		else {
+			handleNoGeolocation(false);
+		}
+		
 	}
 
 	// setting for destination marker
@@ -324,12 +334,13 @@ G.locationModule = (function(distanceModule, bookmarkModule) {
 	}
 
 	my.initialize = function() {
-		setIsAndroidConnected(true);
+		my.setIsAndroidConnected(true);
 
 	    var mapOptions = {
 	        zoom: 14,
 			disableDefaultUI: true
 	    };
+	    
 	    mMap = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 		
 		initPosition();
@@ -352,4 +363,4 @@ G.locationModule = (function(distanceModule, bookmarkModule) {
 	return my;
 }(G.distanceModule, G.bookmarkModule));
 
-google.maps.event.addDomListener(window, 'load', G.locationModule.initialize());
+google.maps.event.addDomListener(window, 'load', G.locationModule.initialize);
