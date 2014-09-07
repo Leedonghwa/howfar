@@ -11,8 +11,14 @@ G.bookmarkModule = (function(locationModule) {
 	}
 
 	my.clickBookmark = function(address) {
-		mInfoWindow.close();
-		mDestMarker.setVisible(false);
+		var infoWindow = G.locationModule.getInfoWindow();
+		var destMarker = G.locationModule.getDestMarker();
+		var map = G.locationModule.getMap();
+
+		// console.log("clickBookmark: " + address);
+
+		infoWindow.close();
+		destMarker.setVisible(false);
 		
 		var place = JSON.parse(localStorage.getItem(address));
 		if (!place.geometry) {
@@ -24,15 +30,15 @@ G.bookmarkModule = (function(locationModule) {
 		console.log("viewport content: " + JSON.stringify(place.geometry.viewport));
 
 		if (place.geometry.viewport) {
-			mMap.setCenter(savedLatLng);
-			mMap.setZoom(14);
-			// mMap.fitBounds(place.geometry.viewport);
+			map.setCenter(savedLatLng);
+			map.setZoom(14);
+			// map.fitBounds(place.geometry.viewport);
 		} else {
-			mMap.setCenter(savedLatLng);
-			mMap.setZoom(14);
+			map.setCenter(savedLatLng);
+			map.setZoom(14);
 		}
 
-		mDestMarker.setIcon(/** @type {google.maps.Icon} */({
+		destMarker.setIcon(/** @type {google.maps.Icon} */({
 			url: place.icon,
 			size: new google.maps.Size(71, 71),
 			origin: new google.maps.Point(0, 0),
@@ -40,8 +46,8 @@ G.bookmarkModule = (function(locationModule) {
 			scaledSize: new google.maps.Size(35, 35)
 		}));
 
-		mDestMarker.setPosition(savedLatLng);
-		mDestMarker.setVisible(true);
+		destMarker.setPosition(savedLatLng);
+		destMarker.setVisible(true);
 
 		var address = '';
 		if (place.address_components) {
@@ -52,8 +58,8 @@ G.bookmarkModule = (function(locationModule) {
 			].join(' ');
 		}
 
-		mInfoWindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
-		mInfoWindow.open(mMap, mDestMarker);
+		infoWindow.setContent('<div><strong>' + place.name + '</strong><br>' + address);
+		infoWindow.open(map, destMarker);
 	}
 
 	my.loadAddress = function() {
@@ -94,18 +100,20 @@ G.bookmarkModule = (function(locationModule) {
 			localStorage.setItem('AddressList', JSON.stringify(storage));
 		}
 
-		var isDuplicated = JSON.parse(localStorage.getItem(mDestPlaceInfo.address));
+		var destPlaceInfo = G.locationModule.getDestPlaceInfo();
+
+		var isDuplicated = JSON.parse(localStorage.getItem(destPlaceInfo.address));
 		if (isDuplicated) {
 			return;
 		}
 		
 		var arrayLength = storage.length;
-		storage[arrayLength] = mDestPlaceInfo.name;
-		storage[arrayLength+1] = mDestPlaceInfo.address;
+		storage[arrayLength] = destPlaceInfo.name;
+		storage[arrayLength+1] = destPlaceInfo.address;
 		localStorage.setItem('AddressList', JSON.stringify(storage));
 		
 		// key : address, value : place
-		localStorage.setItem(mDestPlaceInfo.address, JSON.stringify(mDestPlaceInfo.place));
+		localStorage.setItem(destPlaceInfo.address, JSON.stringify(destPlaceInfo.place));
 
 		my.loadAddress();
 		my.sendBookmarkListToAndroid();

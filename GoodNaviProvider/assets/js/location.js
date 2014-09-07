@@ -360,6 +360,22 @@ G.locationModule = (function(distanceModule, bookmarkModule) {
 		G.bookmarkModule.loadAddress();
 	}
 
+	my.getDestPlaceInfo = function() {
+		return mDestPlaceInfo;
+	}
+
+	my.getInfoWindow = function() {
+		return mInfoWindow;	
+	} 
+
+	my.getDestMarker = function() {
+		return mDestMarker;
+	}
+
+	my.getMap = function() {
+		return mMap;
+	}
+
 	return my;
 }(G.distanceModule, G.bookmarkModule));
 
