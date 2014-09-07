@@ -84,5 +84,13 @@ G.distanceModule = (function(mathModule) {
 		my.displayTextDistance();
 	}
 
+	my.getDistance = function() {
+		return mDistance;
+	}
+
+	my.setDistance = function(distance) {
+		mDistance = distance;	
+	}
+
 	return my;
 }(G.mathModule));

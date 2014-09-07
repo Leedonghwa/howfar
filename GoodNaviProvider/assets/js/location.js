@@ -16,11 +16,13 @@ G.locationModule = (function(distanceModule, bookmarkModule) {
 
 	// is used in followUser and onlyMarkUser(look down)
 	function drawPolyANDSendDistance(currentPosition) {
+		var distance;
+
 		if (mIsSearch) {
 			drawPoly(currentPosition, mDestMarker.getPosition());
-			mDistance = G.distanceModule.calcDistance(currentPosition, mDestMarker.getPosition());
-			sendDistanceToAndroid(mDistance);
-					
+			distance = G.distanceModule.calcDistance(currentPosition, mDestMarker.getPosition());
+			sendDistanceToAndroid(distance);
+			G.distanceModule.setDistance(distance);
 			G.distanceModule.displayTextDistance();
 		}
 	}
