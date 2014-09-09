@@ -205,14 +205,15 @@ public class GoodNaviProviderActivity extends Activity {
 	public void messageFromGearToWeb(String msg) {
 		Log.d("messageFromGear", msg);
 
+		// click bookmark
 		if (msg.charAt(0) == 'A') {
 			mWebView.loadUrl("javascript:G.bookmarkModule.searchAddressFromGear('"
 					+ msg.substring(1) + "')");
 			Log.d("messageFromGear", msg);
 		}
-
+		
+		// gear on/off status
 		else if (msg.charAt(0) == 'B') {
-			Log.d("messageFromGear", msg);
 			if (msg.substring(1).equals("END")) {
 				mWebView.loadUrl("javascript:G.locationModule.setIsGearConnected(false)");
 				mWebView.loadUrl("javascript:G.locationModule.stopNavigator()");
@@ -220,6 +221,12 @@ public class GoodNaviProviderActivity extends Activity {
 				mWebView.loadUrl("javascript:G.locationModule.setIsGearConnected(true)");
 				mWebView.loadUrl("javascript:G.locationModule.runNavigator()");
 			}
+		}
+		
+		// delete bookmark
+		else if (msg.charAt(0) == 'C') {
+			mWebView.loadUrl("javascript:bookmarkModule.deleteBookmark('" 
+					+ msg.substring(1) + "')");
 		}
 
 	}

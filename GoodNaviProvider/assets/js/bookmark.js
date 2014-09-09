@@ -15,8 +15,6 @@ G.bookmarkModule = (function(locationModule) {
 		var destMarker = G.locationModule.getDestMarker();
 		var map = G.locationModule.getMap();
 
-		// console.log("clickBookmark: " + address);
-
 		infoWindow.close();
 		destMarker.setVisible(false);
 		
@@ -62,6 +60,20 @@ G.bookmarkModule = (function(locationModule) {
 		infoWindow.open(map, destMarker);
 	}
 
+	// delete bookmark
+	// delete name:address, address:place info in the localStorage
+	my.deleteBookmark = function(address) {
+		var storage = JSON.parse(localStorage.getItem('AddressList'));
+		var index = storage.indexof(address);
+		storage.splice(itemId - 1, 2);
+		localStorage.setItem('AddressList', JSON.stringify(storage));
+
+		localStorage.removeItem(address);
+
+		my.loadAddress();
+		my.sendBookmarkListToAndroid();		
+	}
+
 	my.loadAddress = function() {
 		var storage = JSON.parse(localStorage.getItem('AddressList'));
 		if (!storage) {
@@ -74,12 +86,19 @@ G.bookmarkModule = (function(locationModule) {
 
 		for ( var i = 0; i < storage.length; i = i + 2) {
 			(function() {
-				var ads = storage[i+1];
+				var address = storage[i+1];
 				var inputElement = document.createElement('li');
+					
+					// click event: bookmark process
 					inputElement.addEventListener('click', function(){
-						console.log(ads);
-						my.clickBookmark(ads);
+						my.clickBookmark(address);
 					});
+
+					// drag event: remove bookmark
+					// IMSI
+					inputElement.addEventListener('drag', function(){
+						my.deleteBookmark(address);
+					});					
 
 				inputElement.innerHTML += "<strong>"
 				+ storage[i]
@@ -129,10 +148,3 @@ G.bookmarkModule = (function(locationModule) {
 
 
 
-// When should I look over this?
-function removeMe(itemId) {
-	var storage = JSON.parse(localStorage.getItem('AddressList'));
-	storage.splice(itemId - 1, 2);
-	localStorage.setItem('AddressList', JSON.stringify(storage));
-	loadNotes();
-}

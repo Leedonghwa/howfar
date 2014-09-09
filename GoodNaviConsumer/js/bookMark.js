@@ -19,21 +19,31 @@ G.bookmarkModule = (function(communicationModule) {
 					inputElement.addEventListener('click', function(){
 						my.clickBookmark(address);
 					});
-
+					// IMSI
+					inputElement.addEventListener('drag', function(){
+						my.deleteBookmark(address);
+					});
+					
 				inputElement.innerHTML = storage[i];
 				displayList.appendChild(inputElement);
 			}());
 		}
 	}
 	
-	// 원하는 북마크를 클릭하여 휴대폰에 전송
+	// click bookmark to send an address to the phone
 	my.clickBookmark = function(address) {
 		address = 'A' + address;
 		G.communicationModule.fetch(address);
 	}
 	
+	// delete bookmark 
+	my.deleteBookmark = function(address) {
+		address = 'C' + address;
+		G.communicationModule.fetch(address);
+	}
+	
 	// 휴대폰에서 전달 받은 bookmark list를 그대로 저장
-	my.addBookmark = function(bookmarkList) {
+	my.updateBookmark = function(bookmarkList) {
 		console.log("communicationModule addbookmark: " + bookmarkList);
 		var displayList = document.getElementById("bookmarklist");
 		localStorage.setItem('AddressList', bookmarkList);
@@ -42,19 +52,3 @@ G.bookmarkModule = (function(communicationModule) {
 	
 	return my;
 }(G.communicationModule));
-
-
-/*
-function addDummy() {
-	var storage = JSON.parse(localStorage.getItem('AddressList'));
-	var arrayLength = storage.length;
-	
-	if (!storage) {
-		storage = [];
-		localStorage.setItem('AddressList', JSON.stringify(storage));
-	}
-	
-	storage[arrayLength] = "seoul" + arrayLength;
-	localStorage.setItem('AddressList', JSON.stringify(storage));
-}
-*/
