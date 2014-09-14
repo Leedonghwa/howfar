@@ -1,4 +1,4 @@
-G.communicationModule = (function(distanceModule, bookmarkModule) {
+G.communicationModule = (function(distanceModule, bookmarkModule, alarmModule) {
     var my = {};
 
     var _SAAgent = null;
@@ -28,11 +28,14 @@ G.communicationModule = (function(distanceModule, bookmarkModule) {
             distanceModule.setNormalDistance(normalDistance);
             distanceModule.displayTextDistance();
             distanceModule.displayBarDistance();
+            
+            // 20m 이하 알람 울림. 한 번만 울려야 한다. 
+            // initDistance가 달라지면 알람 울림 여부를 다시 갱신
+            alarmModule.brrr(initDistance, normalDistance);
         }
         // 북마크 추가
         else if (workType == 'C') {
-        	console.log("communicationModule addbookmark: " + packetContent);
-        	G.bookmarkModule.addBookmark(packetContent);
+        	G.bookmarkModule.updateBookmark(packetContent);
         }
         // host app 종료시 wearable app 종료
         else if (workType == 'D') {
@@ -125,7 +128,7 @@ G.communicationModule = (function(distanceModule, bookmarkModule) {
     }
 
     return my;
-}(G.distanceModule, G.bookmarkModule));
+}(G.distanceModule, G.bookmarkModule, G.alarmModule));
 
 function createHTML(log_string) {
     var log = document.getElementById('resultBoard');

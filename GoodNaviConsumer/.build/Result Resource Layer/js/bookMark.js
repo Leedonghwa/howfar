@@ -1,6 +1,19 @@
 G.bookmarkModule = (function(communicationModule) {
 	var my = {};
 	
+	 my.addDummy = function() {
+		var storage = JSON.parse(localStorage.getItem('AddressList'));
+		var arrayLength = storage.length;
+		
+		if (!storage) {
+			storage = [];
+			localStorage.setItem('AddressList', JSON.stringify(storage));
+		}
+		
+		storage[arrayLength] = "seoul" + arrayLength;
+		localStorage.setItem('AddressList', JSON.stringify(storage));
+	}
+	
 	my.loadAddress = function() {
 		var storage = JSON.parse(localStorage.getItem('AddressList'));
 
@@ -16,24 +29,54 @@ G.bookmarkModule = (function(communicationModule) {
 			(function() {
 				var address = storage[i+1];
 				var inputElement = document.createElement('li');
-					inputElement.addEventListener('click', function(){
+					inputElement.addEventListener('click', function() {
 						my.clickBookmark(address);
 					});
+				
+				// 삭제 버튼 추가
+				inputElement.innerHTML = storage[i] + 
+					'<div id="' + address + '" class="bookmark_delete">Del</div>';
 
-				inputElement.innerHTML = storage[i];
 				displayList.appendChild(inputElement);
+				
+				// 삭제 이벤트
+				var item = document.getElementById(storage[i+1]);
+				item.addEventListener('click', function() {
+					my.deleteBookmark(address);
+				});
 			}());
 		}
+		$(".bookmark_delete").hide();
 	}
 	
-	// 원하는 북마크를 클릭하여 휴대폰에 전송
+	// show bookmark edit
+	my.initBookmarkEdit = function() {
+		var bookmarkEdit = document.getElementById("bookmark_edit");
+		bookmarkEdit.addEventListener('click', function() {
+			if (this.value.length === 4) {
+				this.value = "Ok";
+				$(".bookmark_delete").show(700);
+			} else {
+				this.value = "Edit";
+				$(".bookmark_delete").hide(700);
+			}
+		});
+	}
+	
+	// click bookmark to send an address to the phone
 	my.clickBookmark = function(address) {
 		address = 'A' + address;
 		G.communicationModule.fetch(address);
 	}
 	
+	// delete bookmark 
+	my.deleteBookmark = function(address) {
+		address = 'C' + address;
+		G.communicationModule.fetch(address);
+	}
+	
 	// 휴대폰에서 전달 받은 bookmark list를 그대로 저장
-	my.addBookmark = function(bookmarkList) {
+	my.updateBookmark = function(bookmarkList) {
 		console.log("communicationModule addbookmark: " + bookmarkList);
 		var displayList = document.getElementById("bookmarklist");
 		localStorage.setItem('AddressList', bookmarkList);
@@ -42,19 +85,3 @@ G.bookmarkModule = (function(communicationModule) {
 	
 	return my;
 }(G.communicationModule));
-
-
-/*
-function addDummy() {
-	var storage = JSON.parse(localStorage.getItem('AddressList'));
-	var arrayLength = storage.length;
-	
-	if (!storage) {
-		storage = [];
-		localStorage.setItem('AddressList', JSON.stringify(storage));
-	}
-	
-	storage[arrayLength] = "seoul" + arrayLength;
-	localStorage.setItem('AddressList', JSON.stringify(storage));
-}
-*/

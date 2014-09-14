@@ -15,8 +15,9 @@
 			if (e.keyName == "back")
 				tizen.application.getCurrentApplication().exit();
 		});
-		bookmarkModule.loadAddress();	// 북마크 불러오기 
-		communicationModule.connect();	// 휴대폰과 연결
+		bookmarkModule.initBookmarkEdit();
+		bookmarkModule.loadAddress();		// 북마크 불러오기 
+		communicationModule.connect();		// 휴대폰과 연결
 		
 		/*
 		$( "#distanceDiv" ).bind( "click", function() {

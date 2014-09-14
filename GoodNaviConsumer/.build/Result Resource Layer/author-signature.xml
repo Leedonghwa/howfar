@@ -12,7 +12,7 @@
 </Reference>
 <Reference URI="css/style_main.css">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>xdd+3cT4MtARKmcSHb2OHicfq6YXPZgGnpD+0IuRqfQ=</DigestValue>
+<DigestValue>x4zLDGxkVhsM6gyd1PpDwskuYRYcMC0nUqKUqXI148Y=</DigestValue>
 </Reference>
 <Reference URI="css/style_main.css~">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -26,9 +26,21 @@
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
 <DigestValue>fGhyKnM1Anp4CZBPPaSNXNhoETjAlVLEOrlTQzRVWDs=</DigestValue>
 </Reference>
+<Reference URI="images/Back.png">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>RemnRjrQCqbtM3d6JFTVVjowFhP43YmOsydf/Kl+IJs=</DigestValue>
+</Reference>
+<Reference URI="images/Bookmark_edit.png">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>O1aSSy21pBOIDgIdaIpVRBjfVjfLRbFMNVuUqGsey6w=</DigestValue>
+</Reference>
+<Reference URI="images/Delete.png">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>kFY9Jfdj1T+HyZDauDJ9GQQcWKXZXH4vm6plyMUGGhE=</DigestValue>
+</Reference>
 <Reference URI="index.html">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>IX41CrtqOoNGtJ+zvwv8/INOq/OxIZ/tDIgE1rNDcIU=</DigestValue>
+<DigestValue>HSS2tyYchgN/Mx7EuXE0k0lo3oi+dwBM5zwD52Pp+ew=</DigestValue>
 </Reference>
 <Reference URI="index.html~">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -38,9 +50,13 @@
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
 <DigestValue>5UbUEINunVXuiRCQpe0Pnp5OboUVTXsGptiReCY7QqE=</DigestValue>
 </Reference>
+<Reference URI="js/alarm.js">
+<DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
+<DigestValue>0lQgtF6rLf8fXkCLLZAIVw3qNwLL+kzkAiTy26HL64k=</DigestValue>
+</Reference>
 <Reference URI="js/app.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>EFcTmJkvpFxYByPlHBUdYZCYoCksTMyt6SReP7YvvD8=</DigestValue>
+<DigestValue>440J9Im4c797FfrVBdiEIEzgP9/m54HLbUVzY4cF3KU=</DigestValue>
 </Reference>
 <Reference URI="js/barAnimation.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -48,11 +64,11 @@
 </Reference>
 <Reference URI="js/bookMark.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>zIFFV/9eGDR9gaIe6IdxrVDnx/eFFTI9TO26oGcYqho=</DigestValue>
+<DigestValue>J2Flid5F6JUIMo2Insf+dAKBgdt4WgbEAqxAbDL3orA=</DigestValue>
 </Reference>
 <Reference URI="js/communication.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>2co0agtPcUZxFaOvwnwszhyOMYWz4IXUb4G3FZQZlac=</DigestValue>
+<DigestValue>mLS484zuenuvzPdV701DHcmH1W/8XhnBEpVXWzHFOQc=</DigestValue>
 </Reference>
 <Reference URI="js/distance.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -64,7 +80,7 @@
 </Reference>
 <Reference URI="js/initialization.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>tEiG0FZS3LPcCEPFkoBg3FROteXFS+wqGFb7A83l/Os=</DigestValue>
+<DigestValue>oyQMqURW+yjpUTLTHnW1/NPBedA3U0aXjK4BfuQI1Z4=</DigestValue>
 </Reference>
 <Reference URI="js/jquery-2.1.1.min.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -327,11 +343,11 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-dJgC0D6GagbbAGDELmAvZ8q33ipLgNNIbURExx89tMyUEfG8PypSOK/9FE+nR3iqhdyHFpJYkaQ+
-XTaXYGmkBl8eXconifFFjftpzbnAj7CyPzo2vybpQ7DENNEdcXC30tJYrbMRHv/xRyYzboZPVZw+
-yGrYYucNfKmTZXmMdqKTHUsTqBrcy0AmUv8fR3/VMwJt/Z6tCsd9i5y9hXBnKIbzVZvKeKAsAg2h
-Q4LJIPKBMrR6BSKZ0t1T8wqnOnsv+6GevyGO4lx8YvTSzUHpJ60+H5eR6a2wfkHqvtpOs4zvTyuk
-fqGOjA9QZRSeSBLATcJ1xtG2K0qZjws9aJ/6sg==
+EVwPLOqNzGiHxskNDNr2HwEAZaf253OZAKHvBlLCgO94oqLJVZi/VWGeSIkBIbH1bGNTwnBNPTZa
+WvOUKjCB0FNJyCxJJYuBiMZ+Em5ulQN1MwPzHd5CH4801wbdMvXahTQBzTfqgepljAevRks6kuCl
+pOuGR0ZxKxokldX6jzXCoT8Wuus7VpaJednzhA0wVzX5jrPtNVbEUTQy4Hsc3smyByrIDBLRyEF4
+hvpkrijutSeR1L0v5tzshzpAihyVjztUWgKHvHk0FpvZXkUbKHRyeH00VNluBFwXeJ83VmGw3U6n
+d5wgKRkXvNtuKQe4mTfQbJVrDcs8seMu31hdBQ==
 </SignatureValue>
 <KeyInfo>
 <X509Data>

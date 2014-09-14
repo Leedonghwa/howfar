@@ -6,113 +6,103 @@
 	width: 100%;
 	height: 86%;
 }
-.yuu * { margin: 0; padding: 0; }
+
+.yuu * {
+	margin: 0;
+	padding: 0;
+}
 
 #page-wrap {
-      width: 100%;
-      position: absolute;
-      top: 50%;
+	width: 100%;
+	position: absolute;
+	top: 50%;
 }
+
 .yuu .section_distance {
 	position: absolute;
 	height: 43%;
-	width:100%;
-	top:12%;
-
+	width: 100%;
+	top: 12%;
 }
+
 .yuu .section_progessBar {
 	position: absolute;
 	height: 50%;
-	width:100%;
-	top:50%;
-
+	width: 100%;
+	top: 50%;
 }
+
 .yuu .distance {
-	position: absolute;	
-	top:50%;
+	position: absolute;
+	top: 50%;
 	font-size: 70px;
-	color:#40E0D0;
+	color: #40E0D0;
 	left: 15%;
 }
+
 .yuu .categories {
-	position: absolute;	
-	top:25%;
+	position: absolute;
+	top: 25%;
 	left: 15%;
 	font-size: 20px;
 	font-family: Georgia, serif;
-	color:#CCCCCC;
+	color: #CCCCCC;
 	left: 15%;
 }
+
 .yuu .percentage {
-	position: absolute;	
-	top:25%;
-	right:15%;
+	position: absolute;
+	top: 25%;
+	right: 15%;
 	font-size: 20px;
-	color:#AAAAAA;
+	color: #AAAAAA;
 }
 
-.yuu .meter { 
-	height: 30px;  /* Can be anything */
+.yuu .meter {
+	height: 30px; /* Can be anything */
 	width: 240px;
 	position: relative;
 	margin: 0 auto; /* Just for demo spacing */
 	background: #EEEEEE;
 	padding: 0px;
-	-webkit-box-shadow: inset 0 -1px 1px rgba(255,255,255,0.3);
-	-moz-box-shadow   : inset 0 -1px 1px rgba(255,255,255,0.3);
-	box-shadow        : inset 0 -1px 1px rgba(255,255,255,0.3);
+	-webkit-box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
+	-moz-box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
+	box-shadow: inset 0 -1px 1px rgba(255, 255, 255, 0.3);
 }
-.yuu .meter > span {
+
+.yuu .meter>span {
 	display: block;
 	height: 100%;
-	background-color: rgb(43,194,83);
-	background-image: -webkit-gradient(
-	  linear,
-	  left bottom,
-	  left top,
-	  color-stop(0, rgb(43,194,83)),
-	  color-stop(1, rgb(84,240,84))
-	 );
-	background-image: -moz-linear-gradient(
-	  center bottom,
-	  rgb(43,194,83) 37%,
-	  rgb(84,240,84) 69%
-	 );
-	-webkit-box-shadow: 
-	  inset 0 2px 9px  rgba(255,255,255,0.3),
-	  inset 0 -2px 6px rgba(0,0,0,0.4);
-	-moz-box-shadow: 
-	  inset 0 2px 9px  rgba(255,255,255,0.3),
-	  inset 0 -2px 6px rgba(0,0,0,0.4);
-	box-shadow: 
-	  inset 0 2px 9px  rgba(255,255,255,0.3),
-	  inset 0 -2px 6px rgba(0,0,0,0.4);
+	background-color: rgb(43, 194, 83);
+	background-image: -webkit-gradient(linear, left bottom, left top, color-stop(0, rgb(43,
+		194, 83) ), color-stop(1, rgb(84, 240, 84) ) );
+	background-image: -moz-linear-gradient(center bottom, rgb(43, 194, 83)
+		37%, rgb(84, 240, 84) 69% );
+	-webkit-box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.3), inset 0
+		-2px 6px rgba(0, 0, 0, 0.4);
+	-moz-box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.3), inset 0 -2px
+		6px rgba(0, 0, 0, 0.4);
+	box-shadow: inset 0 2px 9px rgba(255, 255, 255, 0.3), inset 0 -2px 6px
+		rgba(0, 0, 0, 0.4);
 	position: relative;
 	overflow: hidden;
 }
-.yuu .meter > span:after, .yuu .animate > span > span {
+
+.yuu .meter>span:after,.yuu .animate>span>span {
 	content: "";
 	position: absolute;
-	top: 0; left: 0; bottom: 0; right: 0;
-	background-image: 
-	   -webkit-gradient(linear, 0 0, 100% 100%, 
-	      color-stop(.25, rgba(255, 255, 255, .2)), 
-	      color-stop(.25, transparent), color-stop(.5, transparent), 
-	      color-stop(.5, rgba(255, 255, 255, .2)), 
-	      color-stop(.75, rgba(255, 255, 255, .2)), 
-	      color-stop(.75, transparent), to(transparent)
-	   );
-	background-image: 
-		-moz-linear-gradient(
-		  -45deg, 
-	      rgba(255, 255, 255, .2) 25%, 
-	      transparent 25%, 
-	      transparent 50%, 
-	      rgba(255, 255, 255, .2) 50%, 
-	      rgba(255, 255, 255, .2) 75%, 
-	      transparent 75%, 
-	      transparent
-	   );
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background-image: -webkit-gradient(linear, 0 0, 100% 100%, color-stop(.25, rgba(255, 255,
+		255, .2) ), color-stop(.25, transparent), color-stop(.5, transparent),
+		color-stop(.5, rgba(255, 255, 255, .2) ),
+		color-stop(.75, rgba(255, 255, 255, .2) ),
+		color-stop(.75, transparent), to(transparent) );
+	background-image: -moz-linear-gradient(-45deg, rgba(255, 255, 255, .2)
+		25%, transparent 25%, transparent 50%, rgba(255, 255, 255, .2) 50%,
+		rgba(255, 255, 255, .2) 75%, transparent 75%, transparent );
 	z-index: 1;
 	-webkit-background-size: 50px 50px;
 	-moz-background-size: 50px 50px;
@@ -120,148 +110,173 @@
 	overflow: hidden;
 }
 
-.yuu .animate > span:after {
+.yuu .animate>span:after {
 	display: none;
 }
 
-@-webkit-keyframes move {
-    0% {
-       background-position: 0 0;
-    }
-    100% {
-       background-position: 50px 50px;
-    }
+@
+-webkit-keyframes move { 0% {
+	background-position: 0 0;
 }
 
-.yuu .mint > span {
+100%
+{
+background-position
+:
+ 
+50
+px
+ 
+50
+px
+;
+
+    
+}
+}
+.yuu .mint>span {
 	background-color: #40E0D0;
 	background-image: -moz-linear-gradient(top, #40E0D0, #40E0D0);
-	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #40E0D0),color-stop(1, #40E0D0));
-	background-image: -webkit-linear-gradient(#40E0D0, #40E0D0); 
+	background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #40E0D0),
+		color-stop(1, #40E0D0) );
+	background-image: -webkit-linear-gradient(#40E0D0, #40E0D0);
 }
 
-.yuu .nostripes > span > span, .yuu .nostripes > span:after {
+.yuu .nostripes>span>span,.yuu .nostripes>span:after {
 	-webkit-animation: none;
 	background-image: none;
 }
-.title {
-	position: absolute;
+
+.titleBar {
+	position: relative;
 	width: 100%;
 	height: 15%;
-	top:0;
+	top: 0;
 	background: #40E0D0;
 	color: #FFFFFF;
 	text-align: left;
-	padding: 5px 41px;
+	padding: 0;
 }
+
+.title_text {
+	position: absolute;
+	display: inline-block;
+	height: 100%;
+	width: 80%;
+	text-align: left;
+	padding: 5px 5px;
+	border: 0;
+	border-left: 0;
+}
+
 /* ---------------------------------------------------------------------
  * Default
  * ---------------------------------------------------------------------
  */
-
 html {
-  font-size: 100%;
-  /* 1 */
-  -webkit-text-size-adjust: 100%;
-  /* 2 */
-  -ms-text-size-adjust: 100%;
-  /* 2 */
+	font-size: 100%;
+	/* 1 */
+	-webkit-text-size-adjust: 100%;
+	/* 2 */
+	-ms-text-size-adjust: 100%;
+	/* 2 */
 }
 
-html,
-button,
-input,
-select,
-textarea {
-  font-family: Tizen, Samsung Sans, Helvetica;
+html,button,input,select,textarea {
+	font-family: Tizen, Samsung Sans, Helvetica;
 }
 
 body {
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
 }
 
-p,
-pre {
-  margin: 1em 0;
+p,pre {
+	margin: 1em 0;
 }
 /***************************************************************************
                    Common Style
 ***************************************************************************/
 .screen-hidden {
-  visibility: hidden;
-  position: absolute;
-  top: -10000em;
-  left: -10000em;
+	visibility: hidden;
+	position: absolute;
+	top: -10000em;
+	left: -10000em;
 }
 /***************************************************************************
                    Default Style.
 ***************************************************************************/
-button,
-input {
-  outline: none;
-  cursor: pointer;
+button,input {
+	outline: none;
+	cursor: pointer;
 }
+
 * {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
 }
+
 a {
-  text-decoration: none !important;
-  color: #fafafa;
+	text-decoration: none !important;
+	color: #fafafa;
 }
-ul,
-li {
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
+
+ul,li {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
 }
+
 img {
-  margin: 0;
-  padding: 0;
+	margin: 0;
+	padding: 0;
 }
 /***************************************************************************
                    Common Style
 ***************************************************************************/
 body {
-  height: 100%;
-  font-size: 2rem;
-  font-family: Tizen, Samsung Sans, Helvetica;
-  background: #ffffff;
-  color: #fafafa;
+	height: 100%;
+	font-size: 2rem;
+	font-family: Tizen, Samsung Sans, Helvetica;
+	background: #ffffff;
+	color: #fafafa;
 }
+
 .ui-page {
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
-  background: #ffffff;
-  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
-  /* overrides webkit link color */
+	width: 100%;
+	height: 100%;
+	overflow: hidden;
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: #ffffff;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	/* overrides webkit link color */
 }
+
 .ui-page.ui-page-active {
-  display: block;
+	display: block;
 }
+
 .scrolling-mode-touch {
-  -webkit-overflow-scrolling: touch;
-  -moz-overflow-scrolling: touch;
-  -o-overflow-scrolling: touch;
-  -ms-overflow-scrolling: touch;
-  overflow-scrolling: touch;
+	-webkit-overflow-scrolling: touch;
+	-moz-overflow-scrolling: touch;
+	-o-overflow-scrolling: touch;
+	-ms-overflow-scrolling: touch;
+	overflow-scrolling: touch;
 }
+
 .ui-content {
-  width: auto;
-  height: 100%;
-  overflow: auto;
-  -webkit-overflow-scrolling: touch;
-  -moz-overflow-scrolling: touch;
-  -o-overflow-scrolling: touch;
-  -ms-overflow-scrolling: touch;
-  overflow-scrolling: touch;
+	width: auto;
+	height: 100%;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+	-moz-overflow-scrolling: touch;
+	-o-overflow-scrolling: touch;
+	-ms-overflow-scrolling: touch;
+	overflow-scrolling: touch;
 }
 /************************
 Listview : second page
@@ -269,31 +284,64 @@ Listview : second page
 #bookmark_title {
 	padding: 5px 20px;
 }
-.ui-content section .bookmark{
+
+.ui-content section .bookmark {
 	position: absolute;
 	width: 100%;
 	height: 86%;
 	top: 15%;
 	overflow-y: auto;
 }
+
 .ui-listview li {
-  font-size: 2.235294117647059rem;
-  line-height: 2.8235294117647056rem;
-  width: 100%;
-  min-height: 5.294117647058823rem;
-  padding: 1.2352941176470589rem 0.47058823529411764rem 1.1764705882352942rem 0.9411764705882353rem;
-  border-bottom: 1px solid #CCCCCC;
-  color: #909090;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  position: relative;
-  }
-  
-.ui-listview li > * {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  -webkit-user-select: none;
+	font-size: 2.235294117647059rem;
+	line-height: 2.8235294117647056rem;
+	width: 100%;
+	min-height: 5.294117647058823rem;
+	padding: 1.2352941176470589rem 0.47058823529411764rem
+		1.1764705882352942rem 0.9411764705882353rem;
+	border-bottom: 1px solid #CCCCCC;
+	color: #909090;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	position: relative;
 }
 
+.ui-listview li>* {
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+	-webkit-user-select: none;
+}
+
+#bookmark_edit {
+	position: absolute;
+	height: 100%;
+	width: 20%;
+	text-align: center;
+	background-color: rgba(0, 0, 0, .25);
+	right: 0; border : 0; color : white;
+	cursor: pointer;
+	padding: 0;
+	vertical-align: bottom;
+	font: 300 18px "Lato", "Arial", sans-serif;
+	color: white;
+	border: 0;
+}
+
+.bookmark_delete {
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 100%;
+	width: 30%;
+	text-align: center;
+	line-height: 85px;
+	padding: 0;
+	background-color:#FF0000;
+	color: white;
+	border: 0;
+	font-size: 1.5rem;
+	display: inline-block;
+}

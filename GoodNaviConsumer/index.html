@@ -8,7 +8,7 @@
 <link rel='stylesheet' href='./css/style_main.css'>
 <link rel="stylesheet" href="css/sectionchanger.css">
 <script>
-var G = {};
+	var G = {};
 </script>
 <script src="js/jquery-2.1.1.min.js"></script>
 <script src="js/math.js"></script>
@@ -23,9 +23,12 @@ var G = {};
 			<!-- section changer has only one child. -->
 			<div>
 				<section class="section-active">
-					<div class="title">How far?</div>
+					<div class="titleBar">
+						<div class="title_text">How far?</div>
+					</div>
 					<div class="yuu">
-						<div id="distanceDiv" class="section_distance" onclick="switchDistanceDisplayUnit()">
+						<div id="distanceDiv" class="section_distance"
+							onclick="switchDistanceDisplayUnit()">
 							<p class="categories">distance</p>
 							<p id="distanceDisplay" class="distance">999m</p>
 						</div>
@@ -42,7 +45,10 @@ var G = {};
 					</div>
 				</section>
 				<section>
-					<div class="title" id="bookmark_title">Bookmark</div>
+					<div class="titleBar">
+						<div class="title_text">Bookmark</div>
+						<input id="bookmark_edit" value="Edit" disabled="disabled"/>
+					</div>
 					<div class="bookmark">
 						<ul id="bookmarklist" class="ui-listview"></ul>
 					</div>
