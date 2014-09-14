@@ -17,15 +17,8 @@
 		});
 		console.log("init: int 3 type");
 		G.bookmarkModule.initBookmarkEdit();
-		G.bookmarkModule.loadAddress();		// 북마크 불러오기 
+		G.bookmarkModule.loadAddress();			// 북마크 불러오기 
 		G.communicationModule.connect();		// 휴대폰과 연결
-		
-		/*
-		$( "#distanceDiv" ).bind( "click", function() {
-			console.log("switchDistanceDisplayUnit_out");
-			switchDistanceDisplayUnit();
-		);
-		*/
 		
 		document.addEventListener("visibilitychange", pageVisibilityHandler, false);
 		function pageVisibilityHandler() {
@@ -50,4 +43,4 @@
 		}
 		tizen.power.setScreenStateChangeListener(onScreenStateChanged); 
 	});
-}(jQuery, G.bookmarkModule, G.communicationModule))
+}(jQuery, G.bookmarkModule, G.communicationModule));
