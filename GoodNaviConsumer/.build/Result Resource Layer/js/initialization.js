@@ -15,10 +15,9 @@
 			if (e.keyName == "back")
 				tizen.application.getCurrentApplication().exit();
 		});
-		console.log("init: int 3 type");
+		G.communicationModule.connect();		// 휴대폰과 연결
 		G.bookmarkModule.initBookmarkEdit();
 		G.bookmarkModule.loadAddress();			// 북마크 불러오기 
-		G.communicationModule.connect();		// 휴대폰과 연결
 		
 		document.addEventListener("visibilitychange", pageVisibilityHandler, false);
 		function pageVisibilityHandler() {

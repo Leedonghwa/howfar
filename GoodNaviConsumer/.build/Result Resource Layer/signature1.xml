@@ -4,7 +4,7 @@
 <SignatureMethod Algorithm="http://www.w3.org/2001/04/xmldsig-more#rsa-sha256"></SignatureMethod>
 <Reference URI="author-signature.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>UTMieFwWwfCTPrrIINbZo5517Ct79lpC5aoiasO4jV4=</DigestValue>
+<DigestValue>+3bQLnJwbiXWs+n+QCavU/qgHNkE/Gw8aob7J1ap6oc=</DigestValue>
 </Reference>
 <Reference URI="config.xml">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -68,7 +68,7 @@
 </Reference>
 <Reference URI="js/bookMark.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>J2Flid5F6JUIMo2Insf+dAKBgdt4WgbEAqxAbDL3orA=</DigestValue>
+<DigestValue>/UIu9FHXUdO05z4z8l/ZU8xQMOv4Y92LoG95N/SEAN4=</DigestValue>
 </Reference>
 <Reference URI="js/communication.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -84,7 +84,7 @@
 </Reference>
 <Reference URI="js/initialization.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>DkL4/chLuZGwbwDAHH+bUlpkAxYrwhscDiMaG480QUc=</DigestValue>
+<DigestValue>+rxLwcbF3oonyfwYRNMeX9qv+OfrPd4LI8qR7fHUTic=</DigestValue>
 </Reference>
 <Reference URI="js/jquery-2.1.1.min.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -347,11 +347,11 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-uey9OrcEXStZlUv6o7UhqB0P1MsyvcV+Pe7MuiDyvQYpVm72w51ug564/A2NhBLwUCXwddpTIStG
-jHvsfX0skM+k9p4oDb3Sz68JcPvMkrKqAAk6nb80S36+DDGl8zhE2E7BZWapMiPsZ1s1+wRgiivC
-PL0hbclb0EwPMWNCJItDBfZUxzWDp0EBQBE3FenzuPoSfOdc8jYnqgS5598krwP7D2vaTdxFgwP3
-fJSGjmyV/v/9BCTZKLhM3l08F2EnQysYo0alvTSMoG60p2go977W1WEH9eY0KRqWdKkHmh8QiqLN
-TATooJnKM0/3qEAeXhHVvv0pnvTkl164x/gj2Q==
+RhVRFzMf3dN5MWNOhaG5bkOnyRAtdzotmanB2Sz0fh1oKJstb/YJf6YN8s2PtO/922EbZAdwJn/j
+bDb0N3DEinWCYz/J0Eln6ggS+1tS6eUVVyUQkud4vtb7lVZNUwmvVR+Xor5+86zDv7wQw2TPjP2h
+UlEXtHYzklsPfivTysIWoFbfaRuHFbtvX877w9lYPl4G9KCUXuizJcbSdjP7Dt2DLeujxvtm8y2h
+wX3ww6x6D21aH+LY1/At9rpZ0vgmYVbGfLJKGbYHx+KtrcPL7xENsfW/aplAqQuj6u03Lt3JpVve
+8tYgitwQx4fBSKd3J+bOpC9bwkVJRbfmWhmABw==
 </SignatureValue>
 <KeyInfo>
 <X509Data>

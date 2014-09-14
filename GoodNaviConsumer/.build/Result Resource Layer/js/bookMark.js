@@ -1,5 +1,6 @@
 G.bookmarkModule = (function(communicationModule) {
 	var my = {};
+	var isEdit = false;
 	
 	 my.addDummy = function() {
 		var storage = JSON.parse(localStorage.getItem('AddressList'));
@@ -30,7 +31,9 @@ G.bookmarkModule = (function(communicationModule) {
 				var address = storage[i+1];
 				var inputElement = document.createElement('li');
 					inputElement.addEventListener('click', function() {
-						my.clickBookmark(address);
+						if(isEdit === false) {
+							my.clickBookmark(address);
+						}
 					});
 				
 				// 삭제 버튼 추가
@@ -42,7 +45,9 @@ G.bookmarkModule = (function(communicationModule) {
 				// 삭제 이벤트
 				var item = document.getElementById(storage[i+1]);
 				item.addEventListener('click', function() {
-					my.deleteBookmark(address);
+					if(isEdit==true) {
+						my.deleteBookmark(address);
+					}
 				});
 			}());
 		}
@@ -53,12 +58,14 @@ G.bookmarkModule = (function(communicationModule) {
 	my.initBookmarkEdit = function() {
 		var bookmarkEdit = document.getElementById("bookmark_edit");
 		bookmarkEdit.addEventListener('click', function() {
-			if (this.value.length === 4) {
+			if (isEdit === false) {
+				isEdit = true;
 				this.value = "Ok";
-				$(".bookmark_delete").show(700);
+				$(".bookmark_delete").show(300);
 			} else {
+				isEdit = false;
 				this.value = "Edit";
-				$(".bookmark_delete").hide(700);
+				$(".bookmark_delete").hide(300);
 			}
 		});
 	}
@@ -66,12 +73,14 @@ G.bookmarkModule = (function(communicationModule) {
 	// click bookmark to send an address to the phone
 	my.clickBookmark = function(address) {
 		address = 'A' + address;
+		console.log("clickBookmark: " + address);
 		G.communicationModule.fetch(address);
 	}
 	
 	// delete bookmark 
 	my.deleteBookmark = function(address) {
 		address = 'C' + address;
+		console.log("deleteBookmark: " + address);
 		G.communicationModule.fetch(address);
 	}
 	

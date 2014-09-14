@@ -63,9 +63,13 @@ G.bookmarkModule = (function(locationModule) {
 	// delete bookmark
 	// delete name:address, address:place info in the localStorage
 	my.deleteBookmark = function(address) {
+		console.log("deleteBookmark: " + address);
+
 		var storage = JSON.parse(localStorage.getItem('AddressList'));
-		var index = storage.indexof(address);
-		storage.splice(itemId - 1, 2);
+		var index = storage.indexOf(address);
+		console.log("deleteBookmark index: " + index);		
+
+		storage.splice(index - 1, 2);
 		localStorage.setItem('AddressList', JSON.stringify(storage));
 
 		localStorage.removeItem(address);
