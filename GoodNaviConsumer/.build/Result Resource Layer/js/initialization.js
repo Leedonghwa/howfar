@@ -15,9 +15,10 @@
 			if (e.keyName == "back")
 				tizen.application.getCurrentApplication().exit();
 		});
-		bookmarkModule.loadAddress();		// 북마크 불러오기 
-		bookmarkModule.initBookmarkEdit();
-		communicationModule.connect();		// 휴대폰과 연결
+		console.log("init: int 3 type");
+		G.bookmarkModule.initBookmarkEdit();
+		G.bookmarkModule.loadAddress();		// 북마크 불러오기 
+		G.communicationModule.connect();		// 휴대폰과 연결
 		
 		/*
 		$( "#distanceDiv" ).bind( "click", function() {

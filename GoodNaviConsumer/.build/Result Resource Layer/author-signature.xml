@@ -40,7 +40,7 @@
 </Reference>
 <Reference URI="index.html">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>HSS2tyYchgN/Mx7EuXE0k0lo3oi+dwBM5zwD52Pp+ew=</DigestValue>
+<DigestValue>s558VvdoD8XHbI8PzK8zBv3Mb1+xMfJ+R055ilLKcmU=</DigestValue>
 </Reference>
 <Reference URI="index.html~">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -68,7 +68,7 @@
 </Reference>
 <Reference URI="js/communication.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>mLS484zuenuvzPdV701DHcmH1W/8XhnBEpVXWzHFOQc=</DigestValue>
+<DigestValue>NZk+rFT14z2MViZRPcgxcF8idUZ0r2rQXZSbSu+i5K8=</DigestValue>
 </Reference>
 <Reference URI="js/distance.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -80,7 +80,7 @@
 </Reference>
 <Reference URI="js/initialization.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
-<DigestValue>oyQMqURW+yjpUTLTHnW1/NPBedA3U0aXjK4BfuQI1Z4=</DigestValue>
+<DigestValue>Iswprq+I9aj82cvxtCTWNujPXm8CJuKqgaVGqZEv5MY=</DigestValue>
 </Reference>
 <Reference URI="js/jquery-2.1.1.min.js">
 <DigestMethod Algorithm="http://www.w3.org/2001/04/xmlenc#sha256"></DigestMethod>
@@ -343,11 +343,11 @@
 </Reference>
 </SignedInfo>
 <SignatureValue>
-EVwPLOqNzGiHxskNDNr2HwEAZaf253OZAKHvBlLCgO94oqLJVZi/VWGeSIkBIbH1bGNTwnBNPTZa
-WvOUKjCB0FNJyCxJJYuBiMZ+Em5ulQN1MwPzHd5CH4801wbdMvXahTQBzTfqgepljAevRks6kuCl
-pOuGR0ZxKxokldX6jzXCoT8Wuus7VpaJednzhA0wVzX5jrPtNVbEUTQy4Hsc3smyByrIDBLRyEF4
-hvpkrijutSeR1L0v5tzshzpAihyVjztUWgKHvHk0FpvZXkUbKHRyeH00VNluBFwXeJ83VmGw3U6n
-d5wgKRkXvNtuKQe4mTfQbJVrDcs8seMu31hdBQ==
+YqUV6FZhmroLxjlhvxUl2gGTJ8mmONedGG0DsWSIRxKNmbreaSmAXquMqzGBcO6QCpJS3VbhljGH
+iyB6w19EHl6hLf2hHLtko/6pV1OxKo2bmrARIYVwmvkJK2EMj0R66iC80npv4l+R0OZB4eUk0lC4
+cBgq/xeGLRe5DUYKLTEomoR0LqR/6883j3aV0F74rv62e+7dWRgjNTncvzQB164oCXXJc304XAkY
+cvIMNu/Y6wfgCbXpxXcNWdrxty8Eo4r4fXh1i1kr2WnWNQAFGPYm195+bzk0HQ3reGAp69Ze7HNk
+oXc/iJk3yvYyVSPfpDGqpIt4Z/eRSvLVOaVaqw==
 </SignatureValue>
 <KeyInfo>
 <X509Data>

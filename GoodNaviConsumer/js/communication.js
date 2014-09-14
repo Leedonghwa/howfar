@@ -102,6 +102,7 @@ G.communicationModule = (function(distanceModule, bookmarkModule, alarmModule) {
             return false;
         }
         try {
+        	console.log("communication: connect");
             webapis.sa.requestSAAgent(onsuccess, onerror);
         } catch (err) {
             console.log("exception [" + err.name + "] msg[" + err.message + "]");
