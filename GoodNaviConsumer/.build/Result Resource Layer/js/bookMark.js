@@ -51,7 +51,9 @@ G.bookmarkModule = (function(communicationModule) {
 				});
 			}());
 		}
-		$(".bookmark_delete").hide();
+		if (isEdit === false) {
+			$(".bookmark_delete").hide();
+		}
 	}
 	
 	// show bookmark edit
