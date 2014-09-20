@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="css/style.css">
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp
 &libraries=geometry&libraries=places&sensor=true&language=en"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 
 <script>
 	var G = {};
@@ -21,7 +22,6 @@
 <body>
 	<input id="pac-input" class="controls" type="text"
 	placeholder="Enter a location"/>
-
 	<div id="map-canvas"></div>
 	<p id="distanceDisplay" onclick="G.distanceModule.switchDistanceDisplayUnit()"></p>
 	<div class="btn_wrap" style="right: 33%">
@@ -33,9 +33,11 @@
 	<div class="btn_wrap" style="right: 3%">
 		<input type="button" id="saveBookmark" class="btn_setting" style="background: url(bookmark1.png)">
 	</div>
-	<div class="bookmark_bar" id="bookmark_bar" onclick="BookmarkControl()"><p>BOOKMARK</p></div>
+	
+	<div class="bookmark_bar" id="bookmark_bar"><p>BOOKMARK</p></div>
 	<div class="bookmark_wrapper" id="bookmark_wrapper">
 		<ul id="bookmarklist" class="bookmarklist"></ul>
 	</div>
 </body>
 </html>
+

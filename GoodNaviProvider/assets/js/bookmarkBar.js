@@ -1,18 +1,21 @@
-var clicked = false;
-function BookmarkControl() {
-	var bar = document.getElementById('bookmark_bar');
-	var list = document.getElementById('bookmark_wrapper');
-	var ul = document.getElementById('bookmarklist');
-	
-	if(!clicked ) {
-		bar.style.bottom = '50%';
-		list.style.top = '50%';
-		ul.style.top = '0%';
-		clicked = true; 
-	} else {
-		bar.style.bottom = '0';
-		list.style.top = '100%';
-		ul.style.top = '100%';
-		clicked = false;		
-	}
-}
+var clicked=false;
+$(document).ready(function(){
+  $(".bookmark_bar").click(function(){
+    if(clicked) {
+      $(".bookmark_wrapper").slideUp();
+      clicked = false;
+    }
+    else {
+      $(".bookmark_wrapper").slideDown();
+      clicked = true;
+    }
+  });
+   $("#map-canvas").click(function(){
+      if(clicked) {
+      $(".bookmark_wrapper").slideUp();
+      clicked = false;
+      }
+  });
+});
+
+
