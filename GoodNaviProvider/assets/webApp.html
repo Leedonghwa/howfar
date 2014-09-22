@@ -17,6 +17,8 @@
 <script src="js/distance.js"></script>
 <script src="js/location.js"></script>
 <script src="js/bookmarkBar.js"></script>
+<script src="js/barAnimation.js"></script>
+
 </head>
 
 <body>
@@ -24,14 +26,21 @@
 	placeholder="Enter a location"/>
 	<div id="map-canvas"></div>
 	<p id="distanceDisplay" onclick="G.distanceModule.switchDistanceDisplayUnit()"></p>
-	<div class="btn_wrap" style="right: 33%">
-		<input type="button" id="howfarBtn" class="btn_setting" style="background: url(search1.png)">
+	<div class="btn_wrap" style="top: 15%">
+		<input type="button" id="howfarBtn" class="btn_setting">
 	</div>
-	<div class="btn_wrap" style="right: 18%">
-		<input type="button" id="myPosBtn" class="btn_setting" style="background: url(myPosition1.png)">
+	<div class="btn_wrap" style="top: 23%">
+		<input type="button" id="myPosBtn" class="btn_setting">
 	</div>
-	<div class="btn_wrap" style="right: 3%">
-		<input type="button" id="saveBookmark" class="btn_setting" style="background: url(bookmark1.png)">
+	<div class="btn_wrap" style="top: 31%">
+		<input type="button" id="saveBookmark" class="btn_setting">
+	</div>
+
+	<div class="distance">
+		<p>1.6km</p>
+	</div>
+	<div class="meter mint">
+		<span id="distBar" class="rate" style="height: 50%"></span>
 	</div>
 	
 	<div class="bookmark_bar" id="bookmark_bar"><p>BOOKMARK</p></div>
@@ -40,4 +49,5 @@
 	</div>
 </body>
 </html>
+
 
