@@ -163,7 +163,8 @@ px
 	display: inline-block;
 	height: 100%;
 	width: 80%;
-	text-align: left;	
+	text-align: left;
+	
 	border: 0;
 	border-left: 0;
 }

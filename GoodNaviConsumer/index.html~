@@ -24,7 +24,7 @@
 			<div>
 				<section class="section-active">
 					<div class="titleBar">
-						<div class="title_text" id="firstTitle">How far?</div>
+						<div class="title_text">How far?</div>
 					</div>
 					<div class="yuu">
 						<div id="distanceDiv" class="section_distance"
@@ -46,7 +46,7 @@
 				</section>
 				<section>
 					<div class="titleBar">
-						<div class="title_text" id="secondTitle">Bookmark</div>
+						<div class="title_text">Bookmark</div>
 						<input id="bookmark_edit" value="Edit" readonly/>
 					</div>
 					<div class="bookmark">
