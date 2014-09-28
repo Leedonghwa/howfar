@@ -77,19 +77,24 @@ html, body {
 #howfarBtn {
 	background: url(../search1.png);
 }
-#howfarBtn:focus {
+
+#howfarBtn:active {
 	background: url(../search2.png);
 }
+
 #myPosBtn {
 	background: url(../myPosition1.png);
 }
-#myPosBtn:focus {
+
+#myPosBtn:active {
 	background: url(../myPosition2.png);
 }
+
 #saveBookmark {
 	background: url(../bookmark1.png);
 }
-#saveBookmark:focus {
+
+#saveBookmark:active {
 	background: url(../bookmark2.png);
 }
 
@@ -134,12 +139,27 @@ html, body {
 	color: #888888;
 	width: 100%;
 	height: 50%;
-/*	top:77%;     ���� 73%*/
 	overflow-x: hidden;
 	overflow-y: auto;
 	z-index: 10;
 	bottom: 4%;
 	display:none;
+}
+
+.bookmark_delete {
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 100%;
+	width: 15%;
+	text-align: center;
+	line-height: 46px;
+	padding: 0;
+	background-color:#FF0000;
+	color: white;
+	border: 0;
+	font-size: 1.5rem;
+	display: inline-block;
 }
 
 ul {
@@ -158,12 +178,12 @@ li {
 	width: 100%;
 	min-height: 2.894117647058823rem;
 	margin: 3px 2px;
+	position: relative;
 }
 
 li:active {
 	color: #000000;
 }
-
 /*************** INACTIVE *******************/
 .inactive {
 	position: absolute;
@@ -207,6 +227,7 @@ li:active {
 	-moz-transform: rotate(180deg);
 	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
 }
+
 .meter > span {
 	display: block;
 	height: 100%;
@@ -240,6 +261,7 @@ li:active {
 	-moz-transform: rotate(180deg);
 	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
 }
+
 .meter > span:after, .animate > span > span {
 	content: "";
 	position: absolute;
@@ -289,6 +311,7 @@ li:active {
 	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #f0a3a3),color-stop(1, #f42323));
 	background-image: -webkit-linear-gradient(#f0a3a3, #f42323);
 }
+
 .mint > span {
 	background-color: #40E0D0;
 	background-image: -moz-linear-gradient(top, #40E0D0, #40E0D0);

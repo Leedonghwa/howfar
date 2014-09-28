@@ -14,6 +14,35 @@ G.locationModule = (function(distanceModule, bookmarkModule) {
 	var mIsAndroidConnected = false;
 	var mIsCameraFollowing = false;
 
+	var myPosIcon = {
+		url:'../myPosIcon.png',
+		size: new google.maps.Size(28, 32)
+	};
+	var destIcon = {
+		url:'../destIcon.png',
+		size: new google.maps.Size(28, 32)
+	};
+
+	
+	// setting for destination marker
+	function setDestMarker(map) {
+		mDestMarker = new google.maps.Marker({
+	        	map: map,
+			draggable: true,
+			icon: destIcon,
+			anchorPoint: new google.maps.Point(0, -29),
+
+		});
+	}
+
+	// clear destination marker setting
+	function clearDestMarker() {
+		if(mDestMarker != null) {
+			mDestMarker.setMap(null);
+			mDestMarker = null;
+		}
+	}
+
 	// is used in followUser and onlyMarkUser(look down)
 	function drawPolyANDSendDistance(currentPosition) {
 		var distance;
@@ -115,6 +144,7 @@ G.locationModule = (function(distanceModule, bookmarkModule) {
 		mUserMarker = new google.maps.Marker({
 	        map: map,
 	        draggable: false,
+		icon: myPosIcon,
 	        position: pos
 		});
 	}
@@ -124,23 +154,6 @@ G.locationModule = (function(distanceModule, bookmarkModule) {
 		if(mUserMarker != null) {
 			mUserMarker.setMap(null);
 			mUserMarker = null;
-		}
-	}
-	// setting for destination marker
-	function setDestMarker(map) {
-		mDestMarker = new google.maps.Marker({
-	        	map: map,
-			draggable: true,
-			anchorPoint: new google.maps.Point(0, -29),
-
-		});
-	}
-
-	// clear destination marker setting
-	function clearDestMarker() {
-		if(mDestMarker != null) {
-			mDestMarker.setMap(null);
-			mDestMarker = null;
 		}
 	}
 

@@ -45,7 +45,7 @@ $(document).bind("mobileinit", function(){
 		<p id="distanceDisplay" onclick="G.distanceModule.switchDistanceDisplayUnit()"></p>
 	</div>
 	<div class="meter mint" id="progressBar">
-		<span id="distBar" class="rate" style="height: 0%"></span>
+		<span id="distBar" class="rate" style="height: 30%"></span>
 	</div>
 	
 	<div class="bookmark_bar" id="bookmark_bar"><p>BOOKMARK</p></div>

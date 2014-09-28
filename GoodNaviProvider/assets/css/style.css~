@@ -8,6 +8,7 @@ html, body {
 	font-family: Arial;
 }
 
+/****************** MAP ******************/
 #map-canvas {
 	position:absolute;
 	height: 96%;
@@ -41,6 +42,7 @@ html, body {
 	z-index: 5;
 }
 
+/**************** SEARCH INPUT *****************/
 #pac-input {
 	background-color: #fff;
 	padding: 0 11px 0 13px;
@@ -58,42 +60,58 @@ html, body {
 	width: 401px;
 }
 
+/****************** THREE BUTTONS ********************/
 .btn_setting {
-	width: 50px;
-	height: 50px;
+	width: 40px;
+	height: 40px;
 	padding: 0;
 	margin: 0;
-	box-shadow: 0 2px 6px rgba(0, 206, 209, 0.6);
 	position: absolute;
-	z-index:5;
+	z-index: 5;
+	outline: 0;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	box-shadow: 0 2px 6px rgba(0, 206, 209, 0.6);
 }
 
-.btn_setting:focus {
-	background: rgba(255, 255, 255, 1);
+#howfarBtn {
+	background: url(../search1.png);
+}
 
+#howfarBtn:focus {
+	background: url(../search2.png);
+}
+
+#myPosBtn {
+	background: url(../myPosition1.png);
+}
+
+#myPosBtn:focus {
+	background: url(../myPosition2.png);
+}
+
+#saveBookmark {
+	background: url(../bookmark1.png);
+}
+
+#saveBookmark:focus {
+	background: url(../bookmark2.png);
 }
 
 .btn_wrap {
-	width: 50px;
-	height: 50px;
+	width: 40px;
+	height: 40px;
 	padding: 0;
-	margin: 0;
-	background: rgba(255, 255, 255, 0.95);	
+	margin: 0;	
 	position: absolute;
-	top: 84%;
+	right: 3%;
 	z-index:5;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	background: rgba(255,255,255,0.95);
 }
 
-.btn_wrap:focus {
-	-webkit-box-shadow: 0px 0px 5px rgba(0, 206, 209, 0.6);
-	-moz-box-shadow: 0px 0px 5px rgba(0, 206, 209, 0.6);
-	box-shadow: 0px 0px 5px rgba(0, 206, 209, 0.6);
-	background: white;
-}
-
-.pac-container {
-	font-family: Roboto;
-}
+/***************** BOOKMARK *******************/
 
 .bookmark_bar {
 	position:absolute;
@@ -103,7 +121,7 @@ html, body {
 	bottom: 0;	
 	padding: 0;
 	margin: 0;
-	z-index: 0;
+	z-index: 10;
 }
 
 .bookmark_bar p{
@@ -122,18 +140,34 @@ html, body {
 	width: 100%;
 	height: 50%;
 /*	top:77%;     ���� 73%*/
-	top: 100%;
 	overflow-x: hidden;
 	overflow-y: auto;
 	z-index: 10;
+	bottom: 4%;
+	display:none;
+}
+
+.bookmark_delete {
+	position: absolute;
+	right: 0;
+	top: 0;
+	height: 100%;
+	width: 15%;
+	text-align: center;
+	line-height: 46px;
+	padding: 0;
+	background-color:#FF0000;
+	color: white;
+	border: 0;
+	font-size: 1.5rem;
+	display: inline-block;
 }
 
 ul {
 	position: absolute;
 	width:100%;
 	height:50%;
-	top: 100%;
-	margin:0;
+	margin-top:0;
 	padding-top:0;
 	padding-left:2px;
 	list-style: none;		
@@ -145,9 +179,143 @@ li {
 	width: 100%;
 	min-height: 2.894117647058823rem;
 	margin: 3px 2px;
+	position: relative;
 }
 
-li:hover {
+li:active {
 	color: #000000;
 }
+/*************** INACTIVE *******************/
+.inactive {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+	background: rgba(0,0,0,0.35);
+	z-index: 7;
+	top:100%;
+	left:0;
+}
 
+/*************** DISTANCE *******************/
+.distance {
+	position:absolute;
+	top: 10%;
+	left: 5%;
+	z-index: 5;
+}
+.distance p {
+	margin: 0;
+	font-size: 14pt;
+}
+
+/*************** PROGRESS BAR ******************/
+.meter { 
+	height: 240px;  /* Can be anything */
+	width: 10px;
+	top: 15%;
+	left: 5%;
+	position: absolute;
+	background: rgba(255,255,255,0.95);
+	padding: 0px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-webkit-box-shadow: inset 0 -1px 1px rgba(255,255,255,0.3);
+	-moz-box-shadow   : inset 0 -1px 1px rgba(255,255,255,0.3);
+	box-shadow        : inset 0 -1px 1px rgba(255,255,255,0.3);
+	-webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+}
+
+.meter > span {
+	display: block;
+	height: 100%;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	background-color: rgb(43,194,83);
+	background-image: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0, rgb(43,194,83)),
+	color-stop(1, rgb(84,240,84))
+	);
+	background-image: -moz-linear-gradient(
+	center bottom,
+	rgb(43,194,83) 37%,
+	rgb(84,240,84) 69%
+	);
+	-webkit-box-shadow: 
+	inset 0 2px 9px  rgba(255,255,255,0.3),
+	inset 0 -2px 6px rgba(0,0,0,0.4);
+	-moz-box-shadow: 
+	inset 0 2px 9px  rgba(255,255,255,0.3),
+	inset 0 -2px 6px rgba(0,0,0,0.4);
+	box-shadow: 
+	inset 0 2px 9px  rgba(255,255,255,0.3),
+	inset 0 -2px 6px rgba(0,0,0,0.4);
+	position: relative;
+	overflow: hidden;
+	-webkit-transform: rotate(180deg);
+	-moz-transform: rotate(180deg);
+	filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1);
+}
+
+.meter > span:after, .animate > span > span {
+	content: "";
+	position: absolute;
+	top: 0; left: 0; bottom: 0; right: 0;
+	background-image: 
+	-webkit-gradient(linear, 0 0, 100% 100%, 
+	color-stop(.25, rgba(255, 255, 255, .2)), 
+	color-stop(.25, transparent), color-stop(.5, transparent), 
+	color-stop(.5, rgba(255, 255, 255, .2)), 
+	color-stop(.75, rgba(255, 255, 255, .2)), 
+	color-stop(.75, transparent), to(transparent)
+	);
+	background-image: 
+	-moz-linear-gradient(
+	-45deg, 
+	rgba(255, 255, 255, .2) 25%, 
+	transparent 25%, 
+	transparent 50%, 
+	rgba(255, 255, 255, .2) 50%, 
+	rgba(255, 255, 255, .2) 75%, 
+	transparent 75%, 
+	transparent
+	);
+	z-index: 1;
+	-webkit-background-size: 50px 50px;
+	-moz-background-size: 50px 50px;
+	-webkit-animation: move 2s linear infinite;
+	overflow: hidden;
+}
+
+.animate > span:after {
+	display: none;
+}
+
+@-webkit-keyframes move {
+	0% {
+		background-position: 50px 50px;
+	}
+	100% {
+		background-position: 0 0;
+	}
+}
+
+.red > span {
+	background-color: #f0a3a3;
+	background-image: -moz-linear-gradient(top, #f0a3a3, #f42323);
+	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #f0a3a3),color-stop(1, #f42323));
+	background-image: -webkit-linear-gradient(#f0a3a3, #f42323);
+}
+
+.mint > span {
+	background-color: #40E0D0;
+	background-image: -moz-linear-gradient(top, #40E0D0, #40E0D0);
+	background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0, #40E0D0),color-stop(1, #40E0D0));
+	background-image: -webkit-linear-gradient(#40E0D0, #40E0D0);
+}
