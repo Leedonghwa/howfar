@@ -80,7 +80,7 @@ G.distanceModule = (function($, mathModule) {
         } else {
             _isMile = true;
         }
-        displayTextDistance();
+        my.displayTextDistance();
     }
 
     /**

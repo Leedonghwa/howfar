@@ -308,6 +308,10 @@ Listview : second page
 	position: relative;
 }
 
+.ui-listview li:active {
+	background-color: #CCCCCC;
+}
+
 .ui-listview li>* {
 	white-space: nowrap;
 	text-overflow: ellipsis;

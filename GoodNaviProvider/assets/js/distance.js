@@ -3,6 +3,8 @@ G.distanceModule = (function(mathModule) {
 
 	var mIsMile = false;		// T : english system, F : metric system
 	var mDistance = 0;			// distance from user position from destination
+	var mInitDistance = 100;
+	var mIsInitDistance = false;
 
 	// return distance expressed by english units
 	function distanceEnglish(distance)
@@ -70,7 +72,27 @@ G.distanceModule = (function(mathModule) {
 		}
 		autoDisplaySizeAdjustment(distUnit);
 		document.getElementById('distanceDisplay').innerHTML = distUnit;
+		$('#distanceDisplay').html(distUnit);
 	}
+
+
+
+	my.drawDistanceBar = function() {
+		var passedDistance = mInitDistance - mDistance;
+        console.log("initDistance: " + mInitDistance);
+        console.log("distance: " + mDistance);
+        console.log("passedDistance: " + passedDistance);
+        if (passedDistance < 0) {
+            passedDistance = 0;
+        }
+
+        var percentPassed = parseInt((passedDistance / mInitDistance) * 100);
+        $('#distBar').css('height', percentPassed + '%');
+
+        // document.getElementById("distBar").style.width = percentPassed + "%";
+	}
+
+
 
 	// switch distance unit
 	my.switchDistanceDisplayUnit = function() {
@@ -90,6 +112,27 @@ G.distanceModule = (function(mathModule) {
 
 	my.setDistance = function(distance) {
 		mDistance = distance;	
+	}
+
+	my.getIsInitDistance = function() {
+		return mIsInitDistance; 
+	}
+
+	my.setIsInitDistance = function(isInit) {
+		mIsInitDistance = isInit;
+	}
+
+	my.getInitDistance = function() {
+		return mInitDistance;
+	}
+
+	my.setInitDistance = function(distance) {
+		console.log('setInitDistance: ' + distance);
+		if (mIsInitDistance === false) {
+			console.log('setInitDistance do: ' + distance);
+			mInitDistance = distance;
+			mIsInitDistance = true;
+		}		
 	}
 
 	return my;

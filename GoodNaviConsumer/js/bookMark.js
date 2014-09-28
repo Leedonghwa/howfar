@@ -11,7 +11,9 @@ G.bookmarkModule = (function(communicationModule) {
 			localStorage.setItem('AddressList', JSON.stringify(storage));
 		}
 		
-		storage[arrayLength] = "seoul" + arrayLength;
+		storage[arrayLength] = "동래역";
+		storage[arrayLength+1] = "University of Busan";
+		storage[arrayLength+2] = "Samsung Electronics Central Gate";
 		localStorage.setItem('AddressList', JSON.stringify(storage));
 	}
 	
@@ -30,11 +32,11 @@ G.bookmarkModule = (function(communicationModule) {
 			(function() {
 				var address = storage[i+1];
 				var inputElement = document.createElement('li');
-					inputElement.addEventListener('click', function() {
-						if(isEdit === false) {
-							my.clickBookmark(address);
-						}
-					});
+				inputElement.addEventListener('click', function() {
+					if(isEdit === false) {
+						my.clickBookmark(address);
+					}
+				});
 				
 				// 삭제 버튼 추가
 				inputElement.innerHTML = storage[i] + 

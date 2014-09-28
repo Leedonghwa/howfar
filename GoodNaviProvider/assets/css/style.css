@@ -116,7 +116,7 @@ html, body {
 	bottom: 0;	
 	padding: 0;
 	margin: 0;
-	z-index: 0;
+	z-index: 10;
 }
 
 .bookmark_bar p{
@@ -162,6 +162,19 @@ li {
 
 li:active {
 	color: #000000;
+}
+
+/*************** INACTIVE *******************/
+.inactive {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+	background: rgba(0,0,0,0.35);
+	z-index: 7;
+	top:100%;
+	left:0;
 }
 
 /*************** DISTANCE *******************/

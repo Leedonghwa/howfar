@@ -1,6 +1,6 @@
 G.bookmarkModule = (function(locationModule) {
 	var my = {};
-
+	
 	my.sendBookmarkListToAndroid = function() {
 		var storage = JSON.parse(localStorage.getItem('AddressList'));
 		if (!storage) {
@@ -85,34 +85,49 @@ G.bookmarkModule = (function(locationModule) {
 			localStorage.setItem('AddressList', JSON.stringify(storage));
 		}
 
-		var displayList = document.getElementById("bookmarklist");
-		displayList.innerHTML = "";
+		$('#bookmarklist').empty();
+		console.log('storage.length: ' + storage.length);
 
+		var bookmarkNum = 0;
 		for ( var i = 0; i < storage.length; i = i + 2) {
 			(function() {
 				var address = storage[i+1];
-				var inputElement = document.createElement('li');
-					
-					// click event: bookmark process
-					inputElement.addEventListener('click', function(){
-						my.clickBookmark(address);
-					});
+				var bookmarkId = "bk" + bookmarkNum;
+				// var inputElement = document.createElement('li');
 
-					// drag event: remove bookmark
-					// IMSI
-					inputElement.addEventListener('drag', function(){
-						my.deleteBookmark(address);
-					});					
+				bookmarkNum = bookmarkNum + 1;
+				console.log('bookmarkId: ' + bookmarkId);
 
-				inputElement.innerHTML += "<strong>"
-				+ storage[i]
-				+ "<br>"
-				+ storage[i+1]
-				+ "</strong>"
-			
-				displayList.appendChild(inputElement);
+				$('#bookmarklist').append("<li id='" + bookmarkId + "'><strong>" 
+					+ storage[i] 
+					+ "<br>"
+					+ storage[i+1]
+					+ "</strong>"
+					+ "<div class='bookmark_delete'>Del</div>"
+					+ "</li>");
+
+				$('#' + bookmarkId).children('div').on("click", function() {
+					my.deleteBookmark(address);  					
+				});
+
+				$('#' + bookmarkId).on("click", function() {
+  					if ( $('#' + bookmarkId).children('div').is(':visible') === false) {
+  						console.log("li: " + address);
+  						my.clickBookmark(address);	
+  					}
+				});
+
+				$('#' + bookmarkId).on("swipeleft", function() {
+  					$(this).children('div').show(300);
+				});
+
+				$('#' + bookmarkId).on("swiperight", function() {
+  					$(this).children('div').hide(300);
+				});
 			}());
 		}
+		$('.bookmark_delete').hide();
+
 	}
 
 	my.saveBookmark = function() {
@@ -147,8 +162,23 @@ G.bookmarkModule = (function(locationModule) {
 		G.locationModule.howfarBegin();
 	}
 
+
+
+	my.addDummyBookmark = function() {
+		var storage = JSON.parse(localStorage.getItem('AddressList'));
+		if (!storage) {
+			storage = [];
+			localStorage.setItem('AddressList', JSON.stringify(storage));
+		}
+
+		var arrayLength = storage.length;
+		storage[arrayLength] = 'pnu ' + arrayLength;
+		storage[arrayLength+1] = 'pnu detail ' + arrayLength;
+		localStorage.setItem('AddressList', JSON.stringify(storage));
+		localStorage.setItem('pnu ' + arrayLength, 'pnu detail ' + arrayLength);
+
+		my.loadAddress();
+	}
+
 	return my;
 }(G.locationModule));
-
-
-

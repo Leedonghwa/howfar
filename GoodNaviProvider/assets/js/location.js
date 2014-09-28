@@ -6,9 +6,9 @@ G.locationModule = (function(distanceModule, bookmarkModule) {
 	var mDestMarker = null;			// destination marker
 	var mDestPlaceInfo = null;		// destination place object
 	var mGeodesicPoly;				// used to draw lines
+	var mInitDistance = 100;
 	var mWatchId = null;			// watchPosition ID
 	var mIsSearch = false;			// check whether or not CD is working
-	var mIsInitDistance = false;	// check current loop is first calculating distance
 	var mInfoWindow = new google.maps.InfoWindow();
 	var mIsGearConnected = false;
 	var mIsAndroidConnected = false;
@@ -20,10 +20,15 @@ G.locationModule = (function(distanceModule, bookmarkModule) {
 
 		if (mIsSearch) {
 			drawPoly(currentPosition, mDestMarker.getPosition());
+			
 			distance = G.distanceModule.calcDistance(currentPosition, mDestMarker.getPosition());
+	
+			G.distanceModule.setInitDistance(distance);
 			sendDistanceToAndroid(distance);
-			G.distanceModule.setDistance(distance);
+			
+			G.distanceModule.setDistance(distance); // distanceModule 기능을 위한 set distance
 			G.distanceModule.displayTextDistance();
+			G.distanceModule.drawDistanceBar();
 		}
 	}
 
@@ -236,29 +241,17 @@ G.locationModule = (function(distanceModule, bookmarkModule) {
 	    mGeodesicPoly.setPath(path);    
 	}
 
+	// Under Construction
+
 	function sendDistanceToAndroid(distance) {
-		if (typeof sendDistanceToAndroid.initDistance == 'undefined') {
-			sendDistanceToAndroid.initDistance = 100;
-		}
-		
 		var distancePacket = {
-				initDistance : sendDistanceToAndroid.initDistance,
+				initDistance : G.distanceModule.getInitDistance(),
 				normalDistance : distance
-			};
-		if (mIsInitDistance) {
-			sendDistanceToAndroid.initDistance = distance;
-			distancePacket.initDistance = sendDistanceToAndroid.initDistance;
-			window.android.sendDistance(JSON.stringify(distancePacket));
-			mIsInitDistance = false;
-		}
-		else {
-			var distancePacket = {
-				initDistance : sendDistanceToAndroid.initDistance,
-				normalDistance : distance
-			};
-			window.android.sendDistance(JSON.stringify(distancePacket));
-		}
+		};
+		window.android.sendDistance(JSON.stringify(distancePacket));
 	}
+
+
 
 	function handleNoGeolocation(errorFlag) {
 	    if (errorFlag) {
@@ -290,12 +283,12 @@ G.locationModule = (function(distanceModule, bookmarkModule) {
 
 	my.howfarBegin = function() {
 		mIsSearch = true;
-		mIsInitDistance = true;
+		G.distanceModule.setIsInitDistance(false);
 	}
 
 	my.howfarStop = function() {
 		mIsSearch = false;
-		mIsInitDistance = false;
+		G.distanceModule.setIsInitDistance(true);
 	}
 
 	// run navigator if either mIsGearConnected or mIsAndroidConnected is true

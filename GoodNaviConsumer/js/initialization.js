@@ -17,7 +17,9 @@
 		});
 		G.communicationModule.connect();		// 휴대폰과 연결
 		G.bookmarkModule.initBookmarkEdit();
-		G.bookmarkModule.loadAddress();			// 북마크 불러오기 
+		// G.bookmarkModule.addDummy();
+		G.bookmarkModule.loadAddress();		// 북마크 불러오기 
+		
 		
 		document.addEventListener("visibilitychange", pageVisibilityHandler, false);
 		function pageVisibilityHandler() {
